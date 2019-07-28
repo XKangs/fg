@@ -6,25 +6,38 @@ Project Path:       C:\Users\xKang\Desktop\FK gate\design\atuo-gate.prj
 Design Path:        C:\Users\xKang\Desktop\FK gate\design\atuo-gate.pcb
 Design Title:       
 Created:            26/07/2019 11:11:12 PM
-Last Saved:         28/07/2019 7:17:21 PM
-Editing Time:       120 min
+Last Saved:         28/07/2019 8:22:55 PM
+Editing Time:       233 min
 Units:              thou (precision 0)
 
-Disconnected pin "R3.2" from net "N0002!Photoresistor!".
-Disconnected pin "Rp1.2" from net "N0002!Photoresistor!".
-Disconnected pin "IC1.23" from net "N0027!MicroController!".
+Disconnected pin "IC5.17" from net "N0041!motor driver!".
+Disconnected pin "IC5.20" from net "N0040!motor driver!".
+Disconnected pin "IC5.21" from net "N0042!motor driver!".
+Disconnected pin "IC5.22" from net "N0039!motor driver!".
 
-Deleted net "N0002!Photoresistor!".
-Deleted net "N0027!MicroController!".
+Deleted net "N0039!motor driver!".
+Deleted net "N0040!motor driver!".
+Deleted net "N0041!motor driver!".
+Deleted net "N0042!motor driver!".
 
-Added net "photoresister".
+Added net "MD_step".
+Added net "MD_DIR".
+Added net "MD_SLEEP".
+Added net "MD_EN1".
+Added net "MD_EN2".
 
 Error: Unable to add component reference "FS1" of component "1608FF-1A", package "C0603" because No PCB information for Component "1608FF-1A"..
 Error: Unable to add component reference "FS2" of component "1608FF-3A", package "C0603" because No PCB information for Component "1608FF-3A"..
 
-Connected pin "R3.2" to net "photoresister".
-Connected pin "Rp1.2" to net "photoresister".
-Connected pin "IC1.23" to net "photoresister".
+Connected pin "IC1.4" to net "MD_step".
+Connected pin "IC1.12" to net "MD_EN2".
+Connected pin "IC1.13" to net "MD_EN1".
+Connected pin "IC1.26" to net "MD_DIR".
+Connected pin "IC1.25" to net "MD_SLEEP".
+Connected pin "IC5.22" to net "MD_step".
+Connected pin "IC5.21" to net "MD_EN1".
+Connected pin "IC5.20" to net "MD_DIR".
+Connected pin "IC5.17" to net "MD_SLEEP".
 
 
 End Of Report.

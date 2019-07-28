@@ -6,13 +6,16 @@ Project Path:       C:\Users\xKang\Desktop\FK gate\design\atuo-gate.prj
 Design Path:        C:\Users\xKang\Desktop\FK gate\design\atuo-gate.pcb
 Design Title:       
 Created:            26/07/2019 11:11:12 PM
-Last Saved:         28/07/2019 7:17:21 PM
-Editing Time:       120 min
+Last Saved:         28/07/2019 8:22:55 PM
+Editing Time:       233 min
 Units:              thou (precision 0)
 
 
 Checking integrity of Schematic "C:\Users\xKang\Desktop\FK gate\design\atuo-gate.prj" with PCB "C:\Users\xKang\Desktop\FK gate\design\atuo-gate.pcb"
 ====================================================================================================================================================
+
+
+Warning: Net "12V" uses different net classes "Power" and "Signal" on different pages.
 
 
 End Of Report.
