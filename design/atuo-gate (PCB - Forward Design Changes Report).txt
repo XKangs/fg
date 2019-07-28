@@ -1,105 +1,30 @@
 Forward Design Changes Report
 -----------------------------
 
-Report Written:     Saturday, July 27, 2019
+Report Written:     Sunday, July 28, 2019
 Project Path:       C:\Users\xKang\Desktop\FK gate\design\atuo-gate.prj
 Design Path:        C:\Users\xKang\Desktop\FK gate\design\atuo-gate.pcb
 Design Title:       
 Created:            26/07/2019 11:11:12 PM
-Last Saved:         26/07/2019 11:16:59 PM
-Editing Time:       5 min
+Last Saved:         28/07/2019 7:17:21 PM
+Editing Time:       120 min
 Units:              thou (precision 0)
 
-Disconnected pin "IC1.1" from net "N0000!MicroController!".
-Disconnected pin "RESET.4" from net "N0000!MicroController!".
-Disconnected pin "RESET.3" from net "N0000!MicroController!".
-Disconnected pin "R1.1" from net "N0000!MicroController!".
-Disconnected pin "PL1.5" from net "N0000!MicroController!".
-Disconnected pin "POWER.2" from net "+5V".
-Disconnected pin "IC3.4" from net "N0002!RTC!".
+Disconnected pin "R3.2" from net "N0002!Photoresistor!".
+Disconnected pin "Rp1.2" from net "N0002!Photoresistor!".
+Disconnected pin "IC1.23" from net "N0027!MicroController!".
 
-Deleted net "N0000!MicroController!".
-Deleted net "N0002!RTC!".
+Deleted net "N0002!Photoresistor!".
+Deleted net "N0027!MicroController!".
 
-Added net "RTC_RESET".
-Added net "N0039!MicroController!".
-Added net "N0008!LCD!".
-Added net "N0009!LCD!".
-Added net "N0019!LCD!".
-Added net "N0022!LCD!".
-Added net "N0023!LCD!".
-Added net "N0024!LCD!".
-Added net "N0025!LCD!".
-Added net "N0027!LCD!".
-Added net "N0028!LCD!".
-Added net "N0029!LCD!".
-Added net "N0033!LCD!".
-Added net "N0034!LCD!".
-Added net "N0035!LCD!".
-Added net "N0036!LCD!".
+Added net "photoresister".
 
-Added component reference "R7" of component "Resistor", package "DSC".
-Added component reference "PL2" of component "CONN_SIL_5", package "DSC".
-Added component reference "IC2" of component "PCF8574ADGVRE4", package "SOP65P640X120-20N".
-Added value "address=Read0x71 Write0x70" to component reference "IC2".
+Error: Unable to add component reference "FS1" of component "1608FF-1A", package "C0603" because No PCB information for Component "1608FF-1A"..
+Error: Unable to add component reference "FS2" of component "1608FF-3A", package "C0603" because No PCB information for Component "1608FF-3A"..
 
-Added component reference "DS1" of component "LCR-U01602DSF_AWH", package "LCRU01602DSFAWH".
-Added component reference "R6" of component "RA_PREC", package "DSC".
-Added component reference "Q1" of component "BC548BTA", package "BC548BTA".
-Added component reference "R8" of component "Resistor", package "DSC".
-Added component reference "R9" of component "Resistor", package "DSC".
-Changed value "Value" on component reference "R9" to "330".
-
-Connected pin "IC1.1" to net "RTC_RESET".
-Connected pin "RESET.3" to net "RTC_RESET".
-Connected pin "RESET.4" to net "RTC_RESET".
-Connected pin "R1.1" to net "RTC_RESET".
-Connected pin "PL1.5" to net "RTC_RESET".
-Connected pin "POWER.2" to net "N0039!MicroController!".
-Connected pin "R7.1" to net "N0039!MicroController!".
-Connected pin "R7.2" to net "+5V".
-Connected pin "PL2.2" to net "+5V".
-Connected pin "PL2.3" to net "N0029!MicroController!".
-Connected pin "PL2.4" to net "N0030!MicroController!".
-Connected pin "PL2.5" to net "GND".
-Connected pin "IC3.4" to net "RTC_RESET".
-Connected pin "IC2.2" to net "N0008!LCD!".
-Connected pin "IC2.4" to net "N0009!LCD!".
-Connected pin "IC2.5" to net "+5V".
-Connected pin "IC2.6" to net "GND".
-Connected pin "IC2.7" to net "GND".
-Connected pin "IC2.9" to net "GND".
-Connected pin "IC2.10" to net "N0022!LCD!".
-Connected pin "IC2.20" to net "N0034!LCD!".
-Connected pin "IC2.19" to net "N0029!LCD!".
-Connected pin "IC2.17" to net "N0028!LCD!".
-Connected pin "IC2.16" to net "N0027!LCD!".
-Connected pin "IC2.15" to net "GND".
-Connected pin "IC2.14" to net "N0025!LCD!".
-Connected pin "IC2.12" to net "N0024!LCD!".
-Connected pin "IC2.11" to net "N0023!LCD!".
-Connected pin "DS1.1" to net "GND".
-Connected pin "DS1.2" to net "+5V".
-Connected pin "DS1.3" to net "N0019!LCD!".
-Connected pin "DS1.4" to net "N0029!LCD!".
-Connected pin "DS1.5" to net "N0028!LCD!".
-Connected pin "DS1.6" to net "N0027!LCD!".
-Connected pin "DS1.11" to net "N0022!LCD!".
-Connected pin "DS1.12" to net "N0023!LCD!".
-Connected pin "DS1.13" to net "N0024!LCD!".
-Connected pin "DS1.14" to net "N0025!LCD!".
-Connected pin "DS1.15" to net "N0036!LCD!".
-Connected pin "DS1.16" to net "GND".
-Connected pin "R6.1" to net "+5V".
-Connected pin "R6.3" to net "GND".
-Connected pin "R6.2" to net "N0019!LCD!".
-Connected pin "Q1.2" to net "N0033!LCD!".
-Connected pin "Q1.3" to net "GND".
-Connected pin "Q1.1" to net "N0035!LCD!".
-Connected pin "R8.1" to net "N0034!LCD!".
-Connected pin "R8.2" to net "N0033!LCD!".
-Connected pin "R9.1" to net "N0035!LCD!".
-Connected pin "R9.2" to net "N0036!LCD!".
+Connected pin "R3.2" to net "photoresister".
+Connected pin "Rp1.2" to net "photoresister".
+Connected pin "IC1.23" to net "photoresister".
 
 
 End Of Report.
