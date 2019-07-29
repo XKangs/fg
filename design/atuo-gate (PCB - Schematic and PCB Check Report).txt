@@ -1,13 +1,13 @@
 Schematic and PCB Check Report
 ------------------------------
 
-Report Written:     Sunday, July 28, 2019
+Report Written:     Tuesday, July 30, 2019
 Project Path:       C:\Users\xKang\Desktop\FK gate\design\atuo-gate.prj
 Design Path:        C:\Users\xKang\Desktop\FK gate\design\atuo-gate.pcb
 Design Title:       
 Created:            26/07/2019 11:11:12 PM
-Last Saved:         28/07/2019 10:10:01 PM
-Editing Time:       291 min
+Last Saved:         29/07/2019 10:12:51 PM
+Editing Time:       414 min
 Units:              thou (precision 0)
 
 

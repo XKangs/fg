@@ -1,17 +1,108 @@
 Forward Design Changes Report
 -----------------------------
 
-Report Written:     Sunday, July 28, 2019
+Report Written:     Tuesday, July 30, 2019
 Project Path:       C:\Users\xKang\Desktop\FK gate\design\atuo-gate.prj
 Design Path:        C:\Users\xKang\Desktop\FK gate\design\atuo-gate.pcb
 Design Title:       
 Created:            26/07/2019 11:11:12 PM
-Last Saved:         28/07/2019 10:10:01 PM
-Editing Time:       291 min
+Last Saved:         29/07/2019 10:12:51 PM
+Editing Time:       414 min
 Units:              thou (precision 0)
+
+Added net "N0014!IO extender!".
+Added net "N0021!IO extender!".
+Added net "N0022!IO extender!".
+Added net "N0023!IO extender!".
+Added net "N0024!IO extender!".
+Added net "N0025!IO extender!".
+Added net "N0026!IO extender!".
+Added net "N0027!IO extender!".
+Added net "N0028!IO extender!".
+Added net "N0029!IO extender!".
+Added net "N0030!IO extender!".
+Added net "N0031!IO extender!".
+Added net "N0032!IO extender!".
+Added net "N0033!IO extender!".
+Added net "N0035!IO extender!".
+Added net "N0036!IO extender!".
 
 Error: Unable to add component reference "FS1" of component "1608FF-1A", package "C0603" because No PCB information for Component "1608FF-1A"..
 Error: Unable to add component reference "FS2" of component "1608FF-3A", package "C0603" because No PCB information for Component "1608FF-3A"..
+Added component reference "IC8" of component "MCP23017-E_SP", package "DIP794W56P254L3486H508Q28N".
+Added component reference "SW1-U" of component "Pushbutton", package "DISC".
+Added component reference "SW2-D" of component "Pushbutton", package "DISC".
+Added component reference "SW3-L" of component "Pushbutton", package "DISC".
+Added component reference "SW4-R" of component "Pushbutton", package "DISC".
+Added component reference "SW5-BK" of component "Pushbutton", package "DISC".
+Added component reference "SW6-CF" of component "Pushbutton", package "DISC".
+Added component reference "SW7-ES" of component "Pushbutton", package "DISC".
+Added component reference "R16" of component "Resistor", package "DSC".
+Changed value "Value" on component reference "R16" to "10K".
+Added component reference "PL3" of component "CONN_SIL_4", package "DSC".
+Added component reference "PL4" of component "CONN_SIL_4", package "DSC".
+
+Connected pin "IC8.1" to net "N0021!IO extender!".
+Connected pin "IC8.2" to net "N0035!IO extender!".
+Connected pin "IC8.3" to net "N0036!IO extender!".
+Connected pin "IC8.4" to net "N0022!IO extender!".
+Connected pin "IC8.5" to net "N0023!IO extender!".
+Connected pin "IC8.6" to net "N0024!IO extender!".
+Connected pin "IC8.9" to net "+5V".
+Connected pin "IC8.10" to net "GND".
+Connected pin "IC8.12" to net "SCL".
+Connected pin "IC8.13" to net "SDA".
+Connected pin "IC8.28" to net "N0026!IO extender!".
+Connected pin "IC8.27" to net "N0027!IO extender!".
+Connected pin "IC8.26" to net "N0028!IO extender!".
+Connected pin "IC8.25" to net "N0029!IO extender!".
+Connected pin "IC8.24" to net "N0030!IO extender!".
+Connected pin "IC8.23" to net "N0031!IO extender!".
+Connected pin "IC8.22" to net "N0032!IO extender!".
+Connected pin "IC8.20" to net "N0025!IO extender!".
+Connected pin "IC8.19" to net "N0033!IO extender!".
+Connected pin "IC8.18" to net "RESET".
+Connected pin "IC8.17" to net "GND".
+Connected pin "IC8.16" to net "GND".
+Connected pin "IC8.15" to net "GND".
+Connected pin "SW1-U.1" to net "N0014!IO extender!".
+Connected pin "SW1-U.2" to net "N0014!IO extender!".
+Connected pin "SW1-U.3" to net "N0021!IO extender!".
+Connected pin "SW1-U.4" to net "N0021!IO extender!".
+Connected pin "SW2-D.1" to net "N0014!IO extender!".
+Connected pin "SW2-D.2" to net "N0014!IO extender!".
+Connected pin "SW2-D.3" to net "N0035!IO extender!".
+Connected pin "SW2-D.4" to net "N0035!IO extender!".
+Connected pin "SW3-L.1" to net "N0014!IO extender!".
+Connected pin "SW3-L.2" to net "N0014!IO extender!".
+Connected pin "SW3-L.3" to net "N0036!IO extender!".
+Connected pin "SW3-L.4" to net "N0036!IO extender!".
+Connected pin "SW4-R.1" to net "N0014!IO extender!".
+Connected pin "SW4-R.2" to net "N0014!IO extender!".
+Connected pin "SW4-R.3" to net "N0022!IO extender!".
+Connected pin "SW4-R.4" to net "N0022!IO extender!".
+Connected pin "SW5-BK.1" to net "N0014!IO extender!".
+Connected pin "SW5-BK.2" to net "N0014!IO extender!".
+Connected pin "SW5-BK.3" to net "N0023!IO extender!".
+Connected pin "SW5-BK.4" to net "N0023!IO extender!".
+Connected pin "SW6-CF.1" to net "N0014!IO extender!".
+Connected pin "SW6-CF.2" to net "N0014!IO extender!".
+Connected pin "SW6-CF.3" to net "N0024!IO extender!".
+Connected pin "SW6-CF.4" to net "N0024!IO extender!".
+Connected pin "SW7-ES.1" to net "N0014!IO extender!".
+Connected pin "SW7-ES.2" to net "N0014!IO extender!".
+Connected pin "SW7-ES.3" to net "N0025!IO extender!".
+Connected pin "SW7-ES.4" to net "N0025!IO extender!".
+Connected pin "R16.1" to net "N0014!IO extender!".
+Connected pin "R16.2" to net "+5V".
+Connected pin "PL3.1" to net "N0026!IO extender!".
+Connected pin "PL3.2" to net "N0027!IO extender!".
+Connected pin "PL3.3" to net "N0028!IO extender!".
+Connected pin "PL3.4" to net "N0029!IO extender!".
+Connected pin "PL4.1" to net "N0030!IO extender!".
+Connected pin "PL4.2" to net "N0031!IO extender!".
+Connected pin "PL4.3" to net "N0032!IO extender!".
+Connected pin "PL4.4" to net "N0033!IO extender!".
 
 
 End Of Report.
