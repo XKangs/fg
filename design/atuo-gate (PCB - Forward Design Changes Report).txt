@@ -6,18 +6,11 @@ Project Path:       C:\Users\xKang\Desktop\FK gate\design\atuo-gate.prj
 Design Path:        C:\Users\xKang\Desktop\FK gate\design\atuo-gate.pcb
 Design Title:       
 Created:            26/07/2019 11:11:12 PM
-Last Saved:         31/07/2019 7:17:52 PM
-Editing Time:       659 min
+Last Saved:         31/07/2019 10:02:36 PM
+Editing Time:       679 min
 Units:              thou (precision 0)
 
-Disconnected pin "Rp1.1" from net "N0003!Photoresistor!".
-
-Deleted net "N0003!Photoresistor!".
-
-Error: Unable to add component reference "FS1" of component "1608FF-1A", package "C0603" because No PCB information for Component "1608FF-1A"..
-Error: Unable to add component reference "FS2" of component "1608FF-3A", package "C0603" because No PCB information for Component "1608FF-3A"..
-
-Connected pin "Rp1.1" to net "+5V".
+The designs are the same, so no design changes to forward.
 
 
 End Of Report.
