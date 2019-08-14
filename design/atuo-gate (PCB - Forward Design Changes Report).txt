@@ -1,13 +1,13 @@
 Forward Design Changes Report
 -----------------------------
 
-Report Written:     Wednesday, August 14, 2019
+Report Written:     Thursday, August 15, 2019
 Project Path:       C:\Users\xKang\Desktop\fg\design\atuo-gate.prj
 Design Path:        C:\Users\xKang\Desktop\fg\design\atuo-gate.pcb
 Design Title:       
 Created:            26/07/2019 11:11:12 PM
 Last Saved:         7/08/2019 11:49:24 PM
-Editing Time:       1181 min
+Editing Time:       1182 min
 Units:              thou (precision 0)
 
 Disconnected pin "IC1.12" from net "MD_EN".
@@ -27,8 +27,9 @@ Deleted component reference "U2".
 
 Deleted net "N0006!RTC!".
 
+Changed component reference "J2" from component "4WP", package "DSC" to component "1729034", package "SHDR4W110P0X500_1X4_2000X810X1".
+
 Added net "HES".
-Added net "N0085!MicroController!".
 Added net "N0086!MicroController!".
 Added net "KP_interrupt".
 Added net "N0091!MicroController!".
@@ -56,7 +57,6 @@ Connected pin "IC1.13" to net "reed_switch".
 Connected pin "IC1.26" to net "N0086!MicroController!".
 Connected pin "IC1.25" to net "HES".
 Connected pin "IC1.24" to net "photoresister".
-Connected pin "IC1.23" to net "N0085!MicroController!".
 Connected pin "IC1.19" to net "N0091!MicroController!".
 Connected pin "IC1.18" to net "N0092!MicroController!".
 Connected pin "IC1.17" to net "N0093!MicroController!".
