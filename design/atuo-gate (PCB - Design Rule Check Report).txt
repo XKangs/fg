@@ -1,0 +1,64 @@
+Design Rule Check Report
+------------------------
+
+Report Written:     Wednesday, August 21, 2019
+Project Path:       C:\Users\xKang\Desktop\fg\design\atuo-gate.prj
+Design Path:        C:\Users\xKang\Desktop\fg\design\atuo-gate.pcb
+Design Title:       
+Created:            26/07/2019 11:11:12 PM
+Last Saved:         21/08/2019 6:35:24 PM
+Editing Time:       1250 min
+Units:              thou (precision 0)
+
+
+Results
+=======
+
+
+No errors found
+
+
+Settings
+========
+
+
+Spacings
+
+=========
+
+Tracks        No
+Pads and Vias No
+Shapes        No
+Text          No
+Board         No
+Drills        No
+Components    No
+
+
+Manufacturing
+
+==============
+
+Drill Breakout                  No
+Drill Backoff                   No
+Silkscreen Overlap              No
+Copper Text In Board            No
+Min Track Width                 No
+Min Annular Ring                No
+Min Paste Size                  No
+Vias In Pads                    No
+Unplated Vias                   No
+Unplated Pads With Inner Tracks No
+
+
+Nets
+
+=====
+
+Net Completion               No
+Dangling Tracks              No
+Net Track Length Differences No
+
+
+
+End Of Report.
