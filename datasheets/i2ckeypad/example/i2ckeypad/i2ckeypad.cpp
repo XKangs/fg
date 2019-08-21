@@ -59,12 +59,12 @@
  */
 
 #define COL0  3  // P2 of PCF8574, col0 is usually pin 3 of 4x3 keypads
-#define COL1  4  // P0 of PCF8574, col1 is usually pin 1 of 4x3 keypads
-#define COL2  5  // P4 of PCF8574, col2 is usually pin 5 of 4x3 keypads
-#define COL3  6  // sorry, don't have a 4x4 keypad to try it
-#define ROW0  2  // P1 of PCF8574, row0 is usually pin 2 of 4x3 keypads
-#define ROW1  1  // P6 of PCF8574, row1 is usually pin 7 of 4x3 keypads
-#define ROW2  0  // P5 of PCF8574, row2 is usually pin 6 of 4x3 keypads
+#define COL1  2  // P0 of PCF8574, col1 is usually pin 1 of 4x3 keypads
+#define COL2  1  // P4 of PCF8574, col2 is usually pin 5 of 4x3 keypads
+#define COL3  0  // sorry, don't have a 4x4 keypad to try it
+#define ROW0  4  // P1 of PCF8574, row0 is usually pin 2 of 4x3 keypads
+#define ROW1  5  // P6 of PCF8574, row1 is usually pin 7 of 4x3 keypads
+#define ROW2  6  // P5 of PCF8574, row2 is usually pin 6 of 4x3 keypads
 #define ROW3  7  // P3 of PCF8574, row3 is usually pin 4 of 4x3 keypads
 
 
@@ -75,11 +75,12 @@
  *  like different keys
  */
 
-const char keymap[3][3] =
+const char keymap[4][4] =
 {
-  "123",
-  "456",
-  "789"
+  "123A",
+  "456B",
+  "789C",
+  "DEFG"
 };
 
 
@@ -89,8 +90,8 @@ const char keymap[3][3] =
  */
 
 // Default row and col pin counts
-int num_rows = 3;
-int num_cols = 3;
+int num_rows = 4;
+int num_cols = 4;
 
 // PCF8574 i2c address
 int pcf8574_i2c_addr;
