@@ -59,15 +59,9 @@ void setup() {
   lcd.print("By Kevin");
   pinMode(10, OUTPUT);
   digitalWrite(10, backlight);
-
-  pinMode(interruptPin, INPUT_PULLUP);
-  attachInterrupt(digitalPinToInterrupt(interruptPin), inter, FALLING);
-}
-void loop() {
 }
 
-
-void inter() {  
+void loop() {  
   lcd.setCursor(0, 1);
   int val = analogRead(analogPin);  // read the input pin
   if(val > 1000){
