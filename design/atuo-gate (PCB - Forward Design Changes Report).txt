@@ -1,19 +1,21 @@
 Forward Design Changes Report
 -----------------------------
 
-Report Written:     Wednesday, August 21, 2019
+Report Written:     Sunday, September 08, 2019
 Project Path:       C:\Users\xKang\Desktop\fg\design\atuo-gate.prj
 Design Path:        C:\Users\xKang\Desktop\fg\design\atuo-gate.pcb
 Design Title:       
 Created:            26/07/2019 11:11:12 PM
-Last Saved:         21/08/2019 6:23:31 PM
-Editing Time:       1241 min
+Last Saved:         21/08/2019 10:09:42 PM
+Editing Time:       1466 min
 Units:              thou (precision 0)
 
-Renamed component reference "FS_logic" to "FS_logic".
+Changed value "Value" on component reference "R6" to "shunt".
 
-Renamed component reference "FS_MD" to "FS_MD".
+Added component reference "C10" of component "Capacitor", package "DSC".
 
+Connected pin "C10.1" to net "MD_interrupt".
+Connected pin "C10.2" to net "+5V".
 
 
 End Of Report.
