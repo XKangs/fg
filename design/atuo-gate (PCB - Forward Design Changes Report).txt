@@ -1,21 +1,44 @@
 Forward Design Changes Report
 -----------------------------
 
-Report Written:     Sunday, September 08, 2019
+Report Written:     Wednesday, September 11, 2019
 Project Path:       C:\Users\xKang\Desktop\fg\design\atuo-gate.prj
 Design Path:        C:\Users\xKang\Desktop\fg\design\atuo-gate.pcb
 Design Title:       
 Created:            26/07/2019 11:11:12 PM
-Last Saved:         21/08/2019 10:09:42 PM
+Last Saved:         8/09/2019 2:00:27 PM
 Editing Time:       1466 min
 Units:              thou (precision 0)
 
-Changed value "Value" on component reference "R6" to "shunt".
+Disconnected pin "IC1.13" from net "reed_switch".
+Disconnected pin "I2C.1" from net "MD_interrupt".
+Disconnected pin "reed_sw1.1" from net "+5V".
+Disconnected pin "reed_sw1.2" from net "reed_switch".
+Disconnected pin "reed_sw2.1" from net "+5V".
+Disconnected pin "reed_sw2.2" from net "reed_switch".
+Disconnected pin "R2.1" from net "GND".
+Disconnected pin "R2.2" from net "reed_switch".
 
-Added component reference "C10" of component "Capacitor", package "DSC".
+Deleted component reference "reed_sw1".
+Deleted component reference "reed_sw2".
 
-Connected pin "C10.1" to net "MD_interrupt".
-Connected pin "C10.2" to net "+5V".
+Added net "reed_switch_top".
+Added net "reed_switch_bottom".
+
+Added component reference "reed_sw1_bottom" of component "2WP", package "DSC".
+Added component reference "reed_sw2_top" of component "2WP", package "DSC".
+Added component reference "R12" of component "Resistor", package "DSC".
+
+Connected pin "IC1.6" to net "reed_switch_bottom".
+Connected pin "IC1.13" to net "reed_switch_top".
+Connected pin "reed_sw1_bottom.1" to net "reed_switch_bottom".
+Connected pin "reed_sw1_bottom.2" to net "GND".
+Connected pin "reed_sw2_top.1" to net "reed_switch_top".
+Connected pin "reed_sw2_top.2" to net "GND".
+Connected pin "R2.1" to net "reed_switch_top".
+Connected pin "R2.2" to net "+5V".
+Connected pin "R12.1" to net "reed_switch_bottom".
+Connected pin "R12.2" to net "+5V".
 
 
 End Of Report.
