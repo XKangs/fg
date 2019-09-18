@@ -1,5 +1,6 @@
 #include <LiquidCrystal.h>
 #include <L298N.h>
+#include <AnalogKeypad.h>
 
 #include <Wire.h>
 #include <TimeLib.h>
@@ -7,9 +8,10 @@
 
 #define INTERPUT_PIN 2 //over current interput
 #define LDR_PIN A1
-#define REED_PIN 7
+#define REED_TOP_PIN 7
+#define REED_BOTTOM_PIN 7
 #define HES_PIN A2
-#define BUTTON_PIN A3
+#define BUTTON_PIN A0
 
 #define TIME_TO_OPEN 13
 #define LIGHT_TO_OPEN 500
@@ -27,9 +29,9 @@ enum status { //waiting for...
   overheat,
   eStop
 };
-
-L298N _motor(9, 10, 8);
-LiquidCrystal _lcd(5, 6, 11, 12, 13, A0);
+AnalogKeypad _kp(A0);
+L298N _motor(11, 12, 10);
+LiquidCrystal _lcd(8, 9, 4, 5, 6, 7);
 //L298N _motor(EN, IN1, IN2);
 //LiquidCrystal _lcd(rs, en, d4, d5, d6, d7);
 
@@ -43,72 +45,76 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(INTERPUT_PIN), overHeatAction, LOW);
 
   pinMode(LDR_PIN, INPUT);
-  pinMode(REED_PIN, INPUT);
+  pinMode(REED_TOP_PIN, INPUT);
+  pinMode(REED_BOTTOM_PIN, INPUT);
 
   _lcd.begin(16, 2);
   _lcd.autoscroll();
+
 }
 
 void loop() {
-  switch(_status){
-    case timeOpen:{
-      timeOpenFun();
-      break;
-    }
-    case lightOpen:{
-      lightOpenFun();
-      break;
-    }
-    case opening:{
-      openingFun();
-      break;
-    }
-    case timeClose:{
-      timeCloseFun();
-      break;
-    }
+  switch (_status) {
+    case timeOpen: {
+        timeOpenFun();
+        break;
+      }
+    case lightOpen: {
+        lightOpenFun();
+        break;
+      }
+    case opening: {
+        openingFun();
+        break;
+      }
+    case timeClose: {
+        timeCloseFun();
+        break;
+      }
     //...
-    case overheat:{
-      overheatFun();
-    }
-    case eStop:{
-      eStopFun();
+    case overheat: {
+        overheatFun();
+      }
+    case eStop: {
+        eStopFun();
+      }
+  }
+}
+void timeOpenFun() {
+  setText("waiting timer", 0);
+  setText("manually open", 1);
+  while (true) {
+    if (RTC.read(tm)) {
+      if (tm.Hour > TIME_TO_OPEN) {
+        _status = lightOpen;
+        return;
+      }
+      if (_kp.getKey() == AnalogKeypad::down) {
+        _status = opening;
+        return;
+      }
     }
   }
-  //read button
 }
 
-void timeOpenFun(){
-  if (RTC.read(tm)) {
-    if(tm.Hour > TIME_TO_OPEN){
-      _status = lightOpen;
-    }else{
-      setText("waiting timer", 0);
-      setText("manually open", 1);
+void lightOpenFun() {
+  setText("waiting light", 0);
+  setText("manually open", 1);
+  while (true) {
+    if (analogRead(LDR_PIN) > LIGHT_TO_OPEN || _kp.getKey() == AnalogKeypad::down) {
+      _status = opening;
+      return;
     }
   }
 }
 
-void lightOpenFun(){
-  if(analogRead(LDR_PIN) > LIGHT_TO_OPEN){
-    _status = opening;
-  }else{
-    setText("waiting light", 0);
-    setText("manually open", 1);
-  }
-}
-void openingFun(){ //it would not jump back to main switch, so I have to deal with button press
+void openingFun() {
   setText("opening", 0);
   setText("emergency stop", 1);
   _motor.setSpeed(225);
   _motor.forward();
-  while(digitalRead(REED_PIN) == HIGH){
-    if(checkEStop()){
-      return;
-    }
-  }
-  while(digitalRead(REED_PIN) ==  LOW){
-    if(checkEStop()){
+  while (digitalRead(REED_TOP_PIN) == HIGH) {
+    if (checkEStop()) {
       return;
     }
   }
@@ -116,35 +122,42 @@ void openingFun(){ //it would not jump back to main switch, so I have to deal wi
   delay(500);
   _motor.disable();
   _status = lightClose;
+}
+void timeCloseFun() {
 
 }
-void timeCloseFun(){
+void lightCloseFun() {
 
 }
-void lightCloseFun(){
-
+void closeingFun() {
+  setText("closing", 0);
+  setText("emergency stop", 1);
+  _motor.setSpeed(225);
+  _motor.backward();
+  while (true) {
+    if (checkEStop()) {
+      return;
+    }
+  }
 }
-void closeingFun(){
-
-}
-void overheatFun(){
+void overheatFun() {
   setText("over heat", 0);
   setText("pls clear jam and reset", 1);
   //waiting for reset
 }
-void eStopFun(){
+void eStopFun() {
   //just waiting for continue
 }
 
 
-void overHeatAction(){ //for interput
+void overHeatAction() { //for interput
   _motor.disable();
   _status = overheat;
 }
 
-bool checkEStop(){
-  return false; //!!error!!
-  if(BUTTON_PIN > 0 && BUTTON_PIN < 200){ //!!error!!
+bool checkEStop() {
+  //return false; //!!error!!
+  if (analogRead(BUTTON_PIN) < 1000) { //!!error!!
     _motor.fastStop();
     _status = eStop;
     delay(500);
@@ -156,14 +169,14 @@ bool checkEStop(){
   return false;
 }
 
-void setText(String text, int line){
-  if (text.equals(_lcdText[line])){
+void setText(String text, int line) {
+  if (text.equals(_lcdText[line])) {
     return;
   }
-  if(line == 0){
+  if (line == 0) {
     _lcd.clear();
-  }else{
-    _lcd.setCursor(0,line);
+  } else {
+    _lcd.setCursor(0, line);
   }
   _lcd.print(text);
 }
