@@ -35,7 +35,8 @@ void L298N::forward(){
   digitalWrite(_pinIN1, HIGH);
   digitalWrite(_pinIN2, LOW);
 
-  analogWrite(_pinEnable, _pwmVal);
+  digitalWrite(_pinEnable, HIGH);
+  //analogWrite(_pinEnable, _pwmVal);
 
   _isMoving = true;
 }
@@ -65,8 +66,9 @@ void L298N::forwardFor(unsigned long delay){
 void L298N::backward(){
   digitalWrite(_pinIN1, LOW);
   digitalWrite(_pinIN2, HIGH);
-
-  analogWrite(_pinEnable, _pwmVal);
+  
+  digitalWrite(_pinEnable, HIGH);
+  //analogWrite(_pinEnable, _pwmVal);
 
   _isMoving = true;
 }
@@ -107,7 +109,8 @@ void L298N::fastStop(){
   digitalWrite(_pinIN1, LOW);
   digitalWrite(_pinIN2, LOW);
 
-  analogWrite(_pinEnable, 255);
+  digitalWrite(_pinEnable, HIGH);
+  //analogWrite(_pinEnable, 255);
   
   _isMoving = false;
 }
@@ -115,7 +118,7 @@ void L298N::fastStop(){
 void L298N::disable(){
   digitalWrite(_pinIN1, LOW);
   digitalWrite(_pinIN2, LOW);
-  analogWrite(_pinEnable, 0);
+  analogWrite(_pinEnable, LOW);
   _isMoving = false;
 }
 
