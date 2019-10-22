@@ -1,8 +1,10 @@
 /*
 ** Author: xKang
-** Date: 21/09/2019
+** Date: 15/10/2019
+** hall effect sensor is working now
+* 
 ** todo:
-** 1. adding code for hall effect sensor
+** 1. make emergince stop work
 */
 #include <LiquidCrystal.h>
 #include <L298N.h>
@@ -16,7 +18,7 @@
 #define LDR_PIN A1
 #define REED_TOP_PIN 13
 #define REED_BOTTOM_PIN A3
-#define HES_PIN A2
+#define HES_PIN 3
 #define BUTTON_PIN A0
 
 #define TIME_TO_OPEN 13
@@ -44,12 +46,16 @@ LiquidCrystal _lcd(8, 9, 4, 5, 6, 7);
 status _status = timeOpen;
 String _lcdText[2];
 tmElements_t tm;
+int _turns = 0;
 
 void setup() {
   Serial.begin(9600);
 
   pinMode(INTERPUT_PIN, INPUT);
   //attachInterrupt(digitalPinToInterrupt(INTERPUT_PIN), overHeatAction, LOW);
+  pinMode(HES_PIN, INPUT);
+  attachInterrupt(digitalPinToInterrupt(HES_PIN), HESAction, RISING);
+
 
   pinMode(LDR_PIN, INPUT);
   pinMode(REED_TOP_PIN, INPUT);
@@ -102,16 +108,21 @@ void loop() {
 void timeOpenFun() {
   setText("waiting timer", 0);
   setText("manually open", 1);
+  //I am not going to wait for that stupid timmer, I just puase 3s.  comment next 3 line to enable it
+  delay(3000);
+  _status = lightOpen;
+  return;
   while (true) {
     if (RTC.read(tm)) {
       if (tm.Hour > TIME_TO_OPEN) {
         _status = lightOpen;
         return;
       }
-      if (_kp.getKey() == AnalogKeypad::up) {
+    }
+    if (_kp.getKey() == AnalogKeypad::up) {
+      while(_kp.getKey()== AnalogKeypad::up){}
         _status = opening;
         return;
-      }
     }
   }
 }
@@ -121,7 +132,12 @@ void lightOpenFun() {
   setText("manually open", 1);
   while (true) {
     //Serial.println(analogRead(LDR_PIN));
-    if (analogRead(LDR_PIN) > LIGHT_TO_OPEN || _kp.getKey() == AnalogKeypad::up) {
+    if (analogRead(LDR_PIN) > LIGHT_TO_OPEN){
+      _status = opening;
+      return;
+    }
+    if (_kp.getKey() == AnalogKeypad::up) {
+      while(_kp.getKey() == AnalogKeypad::up){}
       _status = opening;
       return;
     }
@@ -133,10 +149,8 @@ void openingFun() {
   setText("emergency stop", 1);
   _motor.setSpeed(225);
   _motor.forward();
-  while (digitalRead(REED_TOP_PIN) == HIGH) {
-    if (checkEStop()) {
-      eStopFun();
-    }
+  while (digitalRead(REED_TOP_PIN) == HIGH && _turns < 5) {
+    //checkEStop();
   }
   _motor.fastStop();
   delay(500);
@@ -145,8 +159,11 @@ void openingFun() {
 }
 
 void timeCloseFun() {
-  //todo
-  delay(3000);
+  setText("waiting timer", 0);
+  setText("manually close", 1);
+  delay(3000); //same as time open function
+  _status = lightClose;
+  return;
 
 }
 void lightCloseFun() {
@@ -154,7 +171,12 @@ void lightCloseFun() {
   setText("manually close", 1);
   while (true) {
     //Serial.println(analogRead(LDR_PIN));
-    if (analogRead(LDR_PIN) < LIGHT_TO_CLOSE || _kp.getKey() == AnalogKeypad::down) {
+    if (analogRead(LDR_PIN) < LIGHT_TO_CLOSE){
+      _status = closing;
+      return;
+    }
+    if(_kp.getKey() == AnalogKeypad::down) {
+      while(_kp.getKey() == AnalogKeypad::down){}
       _status = closing;
       return;
     }
@@ -165,15 +187,13 @@ void closingFun() {
   setText("emergency stop", 1);
   _motor.setSpeed(225);
   _motor.backward();
-  while (digitalRead(REED_BOTTOM_PIN) == HIGH) {
-    if (checkEStop()) {
-      eStopFun();
-    }
+  while (digitalRead(REED_BOTTOM_PIN) == HIGH && _turns!= 0) {
+    //checkEStop();
   }
   _motor.fastStop();
   delay(500);
   _motor.disable();
-  _status = lightOpen;
+  _status = timeOpen;
 }
 void overheatFun() {
   setText("over heat", 0);
@@ -187,9 +207,13 @@ void overheatFun() {
 void eStopFun() {
   setText("emergency stop", 0);
   setText("continue", 1);
-  while(_kp.getKey() == AnalogKeypad::nullVal){
-    return;
+  while(true){
+    if(_kp.getKey() == AnalogKeypad::select){
+      while(_kp.getKey() == AnalogKeypad::select){}
+      return;
+    }
   }
+  
 }
 
 
@@ -202,23 +226,30 @@ void overHeatAction() {
   _status = overheat;
 }
 
-bool checkEStop() {
-  //return false; //!!error!!
-  if (_kp.getKey() != AnalogKeypad::nullVal) {
-    _motor.fastStop();
-    _status = eStop;
-    delay(500);
-    _motor.disable();
-    return true;
+void HESAction(){
+  if(_status == opening){
+    _turns++;
+  }else if(_status == closing){
+    _turns--;
   }
-  return false;
+  Serial.println(_turns);
+}
+
+void checkEStop() {
+  //return false; //!!error!!
+  if (_kp.getKey() == AnalogKeypad::select) {
+    _motor.fastStop();
+    while(_kp.getKey() == AnalogKeypad::select){}
+    _motor.disable();
+    eStopFun();
+  }
 }
 
 void setText(String text, int row) {
   if (text.equals(_lcdText[row])) {
     return;
   }
-  if (line == 0) {
+  if (row == 0) {
     _lcd.clear();
   } else {
     _lcd.setCursor(0, row);
