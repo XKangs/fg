@@ -14,29 +14,8 @@
 #include <TimeLib.h>
 #include <DS1307RTC.h>
 
-#define INTERPUT_PIN 2 //over current interput
-#define LDR_PIN A1
-#define REED_TOP_PIN 13
-#define REED_BOTTOM_PIN A3
-#define HES_PIN 3
-#define BUTTON_PIN A0
+#include "headers.h";
 
-#define TIME_TO_OPEN 13
-#define LIGHT_TO_OPEN 150
-
-#define TIME_TO_CLOSE 13
-#define LIGHT_TO_CLOSE 150
-
-enum status { //waiting for...
-  timeOpen,
-  lightOpen,
-  opening,
-  timeClose,
-  lightClose,
-  closing,
-  overheat
-  //eStop
-};
 AnalogKeypad _kp(A0);
 L298N _motor(11, 12, 10);
 LiquidCrystal _lcd(8, 9, 4, 5, 6, 7);
@@ -44,62 +23,52 @@ LiquidCrystal _lcd(8, 9, 4, 5, 6, 7);
 //LiquidCrystal _lcd(rs, en, d4, d5, d6, d7);
 
 status _status = timeOpen;
+mode _mode = programming; //!
 String _lcdText[2];
 tmElements_t tm;
 int _turns = 0;
 
 void setup() {
   Serial.begin(9600);
-
-  pinMode(INTERPUT_PIN, INPUT);
-  //attachInterrupt(digitalPinToInterrupt(INTERPUT_PIN), overHeatAction, LOW);
-  pinMode(HES_PIN, INPUT);
-  attachInterrupt(digitalPinToInterrupt(HES_PIN), HESAction, RISING);
-
-
-  pinMode(LDR_PIN, INPUT);
-  pinMode(REED_TOP_PIN, INPUT);
-  pinMode(REED_BOTTOM_PIN, INPUT);
-
   _lcd.begin(16, 2);
-  //_lcd.autoscroll();
-
+  //_lcd.autoscroll();  
+  if(_kp.getKey() == AnalogKeypad::select){
+  	_mode = programming;
+  }
 }
 
 void loop() {
-  switch (_status) {
-    case timeOpen: {
-        timeOpenFun();
-        break;
-      }
-    case lightOpen: {
-        lightOpenFun();
-        break;
-      }
-    case opening: {
-        openingFun();
-        break;
-      }
-    case timeClose: {
-        timeCloseFun();
-        break;
-      }
-    case lightClose:{
-      lightCloseFun();
-      break;
-    }
-    case closing:{
-      closingFun();
-      break;
-    }
-    case overheat: {
-        overheatFun();
-      }
-    /*
-    case eStop: {
-        eStopFun();
-      }
-    */
+  switch(_mode){
+  	case programming:{
+  		pinMode(10,OUTPUT); //!
+  		digitalWrite(10,HIGH); //!
+      programmingMode();
+  		break;
+  	}
+  	case lightSensor:{
+  		lightOpenFun();
+  		openingFun();
+  		lightCloseFun();
+  		closingFun();
+  		break;
+  	}
+  	case timmer:{
+  		timeOpenFun();
+  		openingFun();
+  		timeCloseFun();
+  		closingFun();
+  		break;
+  	}
+  	case combine:
+  	default:{
+  		timeOpenFun();
+  		lightOpenFun();
+  		openingFun();
+  		timeCloseFun();
+  		lightCloseFun();
+  		closingFun();
+  		break;
+  	}
   }
 }
 /*
@@ -120,9 +89,8 @@ void timeOpenFun() {
       }
     }
     if (_kp.getKey() == AnalogKeypad::up) {
-      while(_kp.getKey()== AnalogKeypad::up){}
-        _status = opening;
-        return;
+		_status = opening;
+		return;
     }
   }
 }
@@ -131,13 +99,11 @@ void lightOpenFun() {
   setText("waiting light", 0);
   setText("manually open", 1);
   while (true) {
-    //Serial.println(analogRead(LDR_PIN));
     if (analogRead(LDR_PIN) > LIGHT_TO_OPEN){
       _status = opening;
       return;
     }
     if (_kp.getKey() == AnalogKeypad::up) {
-      while(_kp.getKey() == AnalogKeypad::up){}
       _status = opening;
       return;
     }
@@ -149,9 +115,7 @@ void openingFun() {
   setText("emergency stop", 1);
   _motor.setSpeed(225);
   _motor.forward();
-  while (digitalRead(REED_TOP_PIN) == HIGH && _turns < 5) {
-    //checkEStop();
-  }
+  while (digitalRead(REED_TOP_PIN) == HIGH && _turns < 5) {} //!
   _motor.fastStop();
   delay(500);
   _motor.disable();
@@ -164,19 +128,16 @@ void timeCloseFun() {
   delay(3000); //same as time open function
   _status = lightClose;
   return;
-
 }
 void lightCloseFun() {
   setText("waiting light", 0);
   setText("manually close", 1);
   while (true) {
-    //Serial.println(analogRead(LDR_PIN));
     if (analogRead(LDR_PIN) < LIGHT_TO_CLOSE){
       _status = closing;
       return;
     }
     if(_kp.getKey() == AnalogKeypad::down) {
-      while(_kp.getKey() == AnalogKeypad::down){}
       _status = closing;
       return;
     }
@@ -187,9 +148,7 @@ void closingFun() {
   setText("emergency stop", 1);
   _motor.setSpeed(225);
   _motor.backward();
-  while (digitalRead(REED_BOTTOM_PIN) == HIGH && _turns!= 0) {
-    //checkEStop();
-  }
+  while (digitalRead(REED_BOTTOM_PIN) == HIGH && _turns!= 0) {} //!
   _motor.fastStop();
   delay(500);
   _motor.disable();
@@ -204,6 +163,7 @@ void overheatFun() {
   }
 
 }
+/*
 void eStopFun() {
   setText("emergency stop", 0);
   setText("continue", 1);
@@ -213,10 +173,107 @@ void eStopFun() {
       return;
     }
   }
-  
 }
+*/
+void programmingMode(){
+	mode defaultMode = combine;
+  int max_HES_turns = 1,lightOn = 150,lightOff = 150,timeOn = 8, timeOff = 16;
+  setText("programming mode", 0);
+  setText("", 1);
+  delay(1000);
+
+//section 
+  setText("default mode", 0);
+  while(_kp.getKey() != AnalogKeypad::select){
+    setText(modeToString(defaultMode) + " mode       ", 1);
+    if(_kp.getKey() == AnalogKeypad::up && defaultMode != 0){
+      defaultMode = defaultMode - 1;
+    }
+    if(_kp.getKey() == AnalogKeypad::down && defaultMode != 2){
+      defaultMode = defaultMode + 1;
+    }
+    delay(500);
+  }
+  while(_kp.getKey() == AnalogKeypad::select){}
 
 
+  //section 
+  setText("door hight", 0);
+  while(_kp.getKey() != AnalogKeypad::select){
+    setText(String(max_HES_turns) + "     ", 1);
+    if(_kp.getKey() == AnalogKeypad::up && max_HES_turns != 99){
+      max_HES_turns += 1;
+    }
+    if(_kp.getKey() == AnalogKeypad::down && max_HES_turns != 1){
+      max_HES_turns -= 1;
+    }
+    delay(500);
+  }
+  while(_kp.getKey() == AnalogKeypad::select){}
+
+  //section 
+  setText("light to open", 0);
+  while(_kp.getKey() != AnalogKeypad::select){
+    setText(String(lightOn) + "     ", 1);
+    if(_kp.getKey() == AnalogKeypad::up && lightOn != 1000){
+      lightOn += 25;
+    }
+    if(_kp.getKey() == AnalogKeypad::down && lightOn != 0){
+      lightOn -= 25;
+    }
+    delay(500);
+  }
+  while(_kp.getKey() == AnalogKeypad::select){}
+
+  //section 
+  setText("light to close", 0);
+  while(_kp.getKey() != AnalogKeypad::select){
+    setText(String(lightOff) + "     ", 1);
+    if(_kp.getKey() == AnalogKeypad::up && lightOff != 1000){
+      lightOff += 25;
+    }
+    if(_kp.getKey() == AnalogKeypad::down && lightOff != 0){
+      lightOff -= 25;
+    }
+    delay(500);
+  }
+  while(_kp.getKey() == AnalogKeypad::select){}
+
+  //section 
+  setText("time to open", 0);
+  setText("        (24 hrs)", 1);
+  while(_kp.getKey() != AnalogKeypad::select){
+    setText(String(timeOn) + ":00  ", 1);
+    if(_kp.getKey() == AnalogKeypad::up && timeOn != 9){
+      timeOn += 1;
+    }
+    if(_kp.getKey() == AnalogKeypad::down && timeOn != 0){
+      timeOn -= 1;
+    }
+    delay(500);
+  }
+  while(_kp.getKey() == AnalogKeypad::select){}
+
+  //section 
+  setText("time to close", 0);
+  setText("        (24 hrs)", 1);
+  while(_kp.getKey() != AnalogKeypad::select){
+    setText(String(timeOff) + ":00", 1);
+    if(_kp.getKey() == AnalogKeypad::up && timeOff != 23){
+      timeOff += 1;
+    }
+    if(_kp.getKey() == AnalogKeypad::down && timeOff != 13){
+      timeOff -= 1;
+    }
+    delay(500);
+  }
+  while(_kp.getKey() == AnalogKeypad::select){}
+
+  //store settings //!
+  setText("setting finish", 0);
+  setText("please reboot", 1);
+  while(true){delay(10000);}
+}
 /*
 ** other functions
 */
@@ -225,7 +282,7 @@ void overHeatAction() {
   _motor.disable();
   _status = overheat;
 }
-
+//for interput
 void HESAction(){
   if(_status == opening){
     _turns++;
@@ -234,7 +291,7 @@ void HESAction(){
   }
   Serial.println(_turns);
 }
-
+/*
 void checkEStop() {
   //return false; //!!error!!
   if (_kp.getKey() == AnalogKeypad::select) {
@@ -244,7 +301,7 @@ void checkEStop() {
     eStopFun();
   }
 }
-
+*/
 void setText(String text, int row) {
   if (text.equals(_lcdText[row])) {
     return;
@@ -255,4 +312,16 @@ void setText(String text, int row) {
     _lcd.setCursor(0, row);
   }
   _lcd.print(text);
+}
+
+void runningSetup(){
+	pinMode(INTERPUT_PIN, INPUT);
+	//attachInterrupt(digitalPinToInterrupt(INTERPUT_PIN), overHeatAction, LOW);
+	pinMode(HES_PIN, INPUT);
+	attachInterrupt(digitalPinToInterrupt(HES_PIN), HESAction, RISING);
+
+
+	pinMode(LDR_PIN, INPUT);
+	pinMode(REED_TOP_PIN, INPUT);
+	pinMode(REED_BOTTOM_PIN, INPUT);
 }

@@ -1,7 +1,7 @@
 #include "AnalogKeypad.h"
 AnalogKeypad::AnalogKeypad(int pin) {
 	_pin = pin;
- pinMode(_pin, OUTPUT);
+ pinMode(_pin, INPUT);
 }
 
 AnalogKeypad::KeyVal AnalogKeypad::getKey() {
