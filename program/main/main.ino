@@ -12,9 +12,13 @@
 
 #include <Wire.h>
 #include <TimeLib.h>
+#include <Eeprom24C32_64.h>
 #include <DS1307RTC.h>
 
+
+
 #include "headers.h";
+#include "settingConf.h";
 
 AnalogKeypad _kp(A0);
 L298N _motor(11, 12, 10);
@@ -31,7 +35,8 @@ int _turns = 0;
 void setup() {
   Serial.begin(9600);
   _lcd.begin(16, 2);
-  //_lcd.autoscroll();  
+  //_lcd.autoscroll();
+
   if(_kp.getKey() == AnalogKeypad::select){
   	_mode = programming;
   }
@@ -324,4 +329,42 @@ void runningSetup(){
 	pinMode(LDR_PIN, INPUT);
 	pinMode(REED_TOP_PIN, INPUT);
 	pinMode(REED_BOTTOM_PIN, INPUT);
+}
+
+
+
+settingStore::settingStore(){
+  this._eeprom(0x50);
+  this->_eeprom.initialize();  
+}
+
+void settingStore::read(int baseAddress = 0){
+  int count = 6;
+  char buffer[count] = { 0 };
+  this->_eeprom.readBytes(baseAddress, count, buffer);
+  _defaultMode = (mode)buffer[0];
+    _max_HES_turns = buffer[1];
+  _lightOn = buffer[2] * 25;
+  _lightOff = buffer[3] * 25;
+  _timeOn = buffer[4];
+  _timeOff = buffer[5];
+}
+void settingStore::write(
+  mode defaultMode, 
+  int max_HES_turns,
+  int lightOn,
+  int lightOff,
+  int timeOn,
+  int timeOff,
+  int baseAddress = 0
+){
+  int count = 6;
+  char buffer[count]  = { 0 };
+  buffer[0] = _defaultMode;
+  buffer[1] = _max_HES_turns;
+  buffer[2] = _lightOn / 25;
+  buffer[3] = _lightOff / 25;
+  buffer[4] = _timeOn;
+  buffer[5] = _timeOff;
+  this._eeprom.writeBytes(baseAddress, count, inputBytes);
 }

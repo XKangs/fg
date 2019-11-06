@@ -33,3 +33,25 @@ static inline String modeToString(enum mode m)
     String str[] = { "lightSensor", "timmer", "combine", "programming"};
     return str[m];
 }
+
+class settingStore {
+  public:
+    settingStore();
+    settingStore(mode defaultMode, int max_HES_turns, int lightOn, int lightOff, int timeOn, int timeOff);
+    mode _defaultMode = combine;
+    int _max_HES_turns = 1;
+    int _lightOn = 150;
+    int _lightOff = 150;
+    int _timeOn = 8;
+    int _timeOff = 16;
+    void write(  mode defaultMode, 
+  int max_HES_turns,
+  int lightOn,
+  int lightOff,
+  int timeOn,
+  int timeOff,
+  int baseAddress = 0);
+    void read(int baseAddress = 0);
+  private:
+    Eeprom24C32_64 _eeprom;
+};
