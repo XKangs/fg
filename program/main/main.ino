@@ -1,10 +1,6 @@
 /*
 ** Author: xKang
 ** Date: 15/10/2019
-** hall effect sensor is working now
-* 
-** todo:
-** 1. make emergince stop work
 */
 #include <LiquidCrystal.h>
 #include <L298N.h>
@@ -14,20 +10,17 @@
 #include <TimeLib.h>
 #include <Eeprom24C32_64.h>
 #include <DS1307RTC.h>
-
-
-
 #include "headers.h";
-#include "settingConf.h";
 
+static Eeprom24C32_64 _eeprom(EEPROM_ADDRESS);
 AnalogKeypad _kp(A0);
-L298N _motor(11, 12, 10);
-LiquidCrystal _lcd(8, 9, 4, 5, 6, 7);
 //L298N _motor(EN, IN1, IN2);
+L298N _motor(11, 12, 10);
 //LiquidCrystal _lcd(rs, en, d4, d5, d6, d7);
+LiquidCrystal _lcd(8, 9, 4, 5, 6, 7);
 
-status _status = timeOpen;
-mode _mode = programming; //!
+mode _mode = combine;
+settingStore _conf;
 String _lcdText[2];
 tmElements_t tm;
 int _turns = 0;
@@ -35,18 +28,16 @@ int _turns = 0;
 void setup() {
   Serial.begin(9600);
   _lcd.begin(16, 2);
-  //_lcd.autoscroll();
-
   if(_kp.getKey() == AnalogKeypad::select){
   	_mode = programming;
+  }else{
+    runningSetup();
   }
 }
 
 void loop() {
   switch(_mode){
   	case programming:{
-  		pinMode(10,OUTPUT); //!
-  		digitalWrite(10,HIGH); //!
       programmingMode();
   		break;
   	}
@@ -81,105 +72,111 @@ void loop() {
 */
 void timeOpenFun() {
   setText("waiting timer", 0);
-  setText("manually open", 1);
-  //I am not going to wait for that stupid timmer, I just puase 3s.  comment next 3 line to enable it
-  delay(3000);
-  _status = lightOpen;
-  return;
   while (true) {
     if (RTC.read(tm)) {
-      if (tm.Hour > TIME_TO_OPEN) {
-        _status = lightOpen;
+      if (tm.Hour > _conf._timeOn) {
         return;
       }
     }
     if (_kp.getKey() == AnalogKeypad::up) {
-		_status = opening;
-		return;
-    }
+  	  //return;
+    }  
+    setText(String(tm.Hour,DEC),1);
+    //setText("c:"+tm.Hour+" ",1);
+    delay(3000);
   }
 }
 
 void lightOpenFun() {
   setText("waiting light", 0);
-  setText("manually open", 1);
+  int luxReading;
   while (true) {
-    if (analogRead(LDR_PIN) > LIGHT_TO_OPEN){
-      _status = opening;
+    luxReading = analogRead(LDR_PIN);
+    if (luxReading > _conf._lightOn){
+      Serial.print("time condition return");
+      Serial.println(luxReading);
+      Serial.println(_conf._lightOn);
       return;
     }
     if (_kp.getKey() == AnalogKeypad::up) {
-      _status = opening;
       return;
     }
+    setText(String(luxReading,DEC), 1);
+    //setText("LUX:".String(luxReading,DEC)."  ", 1);
   }
 }
 
 void openingFun() {
   setText("opening", 0);
-  setText("emergency stop", 1);
+  _turns = 0;
   _motor.setSpeed(225);
   _motor.forward();
-  while (digitalRead(REED_TOP_PIN) == HIGH && _turns < 5) {} //!
+  while (digitalRead(REED_TOP_PIN) == HIGH && _turns < _conf._max_HES_turns) {
+    setText(String(_turns,DEC), 1);
+    delay(500);
+   }
   _motor.fastStop();
   delay(500);
   _motor.disable();
-  _status = timeClose;
 }
 
 void timeCloseFun() {
-  setText("waiting timer", 0);
-  setText("manually close", 1);
-  delay(3000); //same as time open function
-  _status = lightClose;
-  return;
+  setText("waiting light", 0);
+  int luxReading;
+  while (true) {
+    luxReading = analogRead(LDR_PIN);
+    if (luxReading < _conf._lightOff){
+      return;
+    }
+    if (_kp.getKey() == AnalogKeypad::down) {
+      return;
+    }
+    setText(String(luxReading,DEC), 1);
+  }
 }
 void lightCloseFun() {
   setText("waiting light", 0);
-  setText("manually close", 1);
+  int luxReading;
   while (true) {
-    if (analogRead(LDR_PIN) < LIGHT_TO_CLOSE){
-      _status = closing;
+    luxReading = analogRead(LDR_PIN);
+    if (luxReading < _conf._lightOff){
       return;
     }
-    if(_kp.getKey() == AnalogKeypad::down) {
-      _status = closing;
+    if (_kp.getKey() == AnalogKeypad::down) {
       return;
     }
+    setText(String(luxReading,DEC), 1);
   }
 }
 void closingFun() {
   setText("closing", 0);
-  setText("emergency stop", 1);
+  _turns = 0;
   _motor.setSpeed(225);
-  _motor.backward();
-  while (digitalRead(REED_BOTTOM_PIN) == HIGH && _turns!= 0) {} //!
+  _motor.forward();
+  while (digitalRead(REED_BOTTOM_PIN) == HIGH && _turns < _conf._max_HES_turns) {
+    setText(String(_turns,DEC), 1);
+    delay(500);
+   }
   _motor.fastStop();
   delay(500);
   _motor.disable();
-  _status = timeOpen;
 }
-void overheatFun() {
-  setText("over heat", 0);
-  setText("pls clear jam and reset", 1);
-  while(true){
-    //waiting for reset
-    delay(1000);
-  }
 
-}
-/*
-void eStopFun() {
-  setText("emergency stop", 0);
-  setText("continue", 1);
-  while(true){
-    if(_kp.getKey() == AnalogKeypad::select){
-      while(_kp.getKey() == AnalogKeypad::select){}
-      return;
-    }
-  }
-}
+/* 
+ * initialize function
 */
+void runningSetup(){
+  pinMode(INTERPUT_PIN, INPUT);
+  //attachInterrupt(digitalPinToInterrupt(INTERPUT_PIN), overHeatAction, LOW);
+  pinMode(HES_PIN, INPUT);
+  attachInterrupt(digitalPinToInterrupt(HES_PIN), HESAction, RISING);
+
+  pinMode(LDR_PIN, INPUT);
+  pinMode(REED_TOP_PIN, INPUT);
+  pinMode(REED_BOTTOM_PIN, INPUT);
+  _conf.read();
+}
+
 void programmingMode(){
 	mode defaultMode = combine;
   int max_HES_turns = 1,lightOn = 150,lightOff = 150,timeOn = 8, timeOff = 16;
@@ -273,39 +270,32 @@ void programmingMode(){
     delay(500);
   }
   while(_kp.getKey() == AnalogKeypad::select){}
-
-  //store settings //!
+  
+  _conf.write(defaultMode,max_HES_turns,lightOn,lightOff,timeOn,timeOff,0);
   setText("setting finish", 0);
   setText("please reboot", 1);
   while(true){delay(10000);}
 }
+
 /*
-** other functions
+ * for interput
 */
-//for interput
 void overHeatAction() {
   _motor.disable();
-  _status = overheat;
+  setText("over heat", 0);
+  setText("pls clear jam and reset", 1);
+  //waiting for reset
+  while(true){
+    delay(10000);
+  }
 }
-//for interput
 void HESAction(){
-  if(_status == opening){
-    _turns++;
-  }else if(_status == closing){
-    _turns--;
-  }
-  Serial.println(_turns);
+  Serial.println("!!");
+  _turns++;
 }
+
 /*
-void checkEStop() {
-  //return false; //!!error!!
-  if (_kp.getKey() == AnalogKeypad::select) {
-    _motor.fastStop();
-    while(_kp.getKey() == AnalogKeypad::select){}
-    _motor.disable();
-    eStopFun();
-  }
-}
+** other functions
 */
 void setText(String text, int row) {
   if (text.equals(_lcdText[row])) {
@@ -319,35 +309,25 @@ void setText(String text, int row) {
   _lcd.print(text);
 }
 
-void runningSetup(){
-	pinMode(INTERPUT_PIN, INPUT);
-	//attachInterrupt(digitalPinToInterrupt(INTERPUT_PIN), overHeatAction, LOW);
-	pinMode(HES_PIN, INPUT);
-	attachInterrupt(digitalPinToInterrupt(HES_PIN), HESAction, RISING);
-
-
-	pinMode(LDR_PIN, INPUT);
-	pinMode(REED_TOP_PIN, INPUT);
-	pinMode(REED_BOTTOM_PIN, INPUT);
-}
-
-
-
+/*
+ * class settingStore
+ * I really should put it to another file
+*/
 settingStore::settingStore(){
-  //this._eeprom(0x50);
-  this->_eeprom.initialize();  
+  _eeprom.initialize();  
 }
 
 void settingStore::read(int baseAddress = 0){
   int count = 6;
   char buffer[count] = { 0 };
-  this->_eeprom.readBytes(baseAddress, count, buffer);
-  _defaultMode = (mode)buffer[0];
-    _max_HES_turns = buffer[1];
-  _lightOn = buffer[2] * 25;
-  _lightOff = buffer[3] * 25;
-  _timeOn = buffer[4];
-  _timeOff = buffer[5];
+  _eeprom.readBytes(baseAddress, count, buffer);
+  
+  this->_defaultMode = (mode)buffer[0]; 
+  this->_max_HES_turns = buffer[1];
+  this->_lightOn = buffer[2] * 25;
+  this->_lightOff = buffer[3] * 25;
+  this->_timeOn = buffer[4];
+  this->_timeOff = buffer[5];
 }
 void settingStore::write(
   mode defaultMode, 
@@ -360,11 +340,11 @@ void settingStore::write(
 ){
   int count = 6;
   char buffer[count]  = { 0 };
-  buffer[0] = _defaultMode;
-  buffer[1] = _max_HES_turns;
-  buffer[2] = _lightOn / 25;
-  buffer[3] = _lightOff / 25;
-  buffer[4] = _timeOn;
-  buffer[5] = _timeOff;
-  this._eeprom.writeBytes(baseAddress, count, inputBytes);
+  buffer[0] = defaultMode;
+  buffer[1] = max_HES_turns;
+  buffer[2] = lightOn / 25;
+  buffer[3] = lightOff / 25;
+  buffer[4] = timeOn;
+  buffer[5] = timeOff;
+  _eeprom.writeBytes(baseAddress, count, buffer);
 }

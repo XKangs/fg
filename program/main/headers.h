@@ -5,21 +5,7 @@
 #define HES_PIN 3
 #define BUTTON_PIN A0
 
-#define TIME_TO_OPEN 13
-#define LIGHT_TO_OPEN 150
-
-#define TIME_TO_CLOSE 13
-#define LIGHT_TO_CLOSE 150
-
-enum status { //waiting for...
-  timeOpen,
-  lightOpen,
-  opening,
-  timeClose,
-  lightClose,
-  closing,
-  overheat
-};
+#define EEPROM_ADDRESS 0x50
 
 enum mode{
 	lightSensor,
@@ -38,19 +24,11 @@ class settingStore {
   public:
     settingStore();
     mode _defaultMode = combine;
-    int _max_HES_turns = 1;
-    int _lightOn = 150;
-    int _lightOff = 150;
-    int _timeOn = 8;
-    int _timeOff = 16;
-    void write(  mode defaultMode, 
-  int max_HES_turns,
-  int lightOn,
-  int lightOff,
-  int timeOn,
-  int timeOff,
-  int baseAddress = 0);
+    int _max_HES_turns;
+    int _lightOn;
+    int _lightOff;
+    int _timeOn;
+    int _timeOff;
+    void write(mode defaultMode, int max_HES_turns,int lightOn,int lightOff,int timeOn,int timeOff,int baseAddress = 0);
     void read(int baseAddress = 0);
-  private:
-    Eeprom24C32_64 _eeprom;
 };
