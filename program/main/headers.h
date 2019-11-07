@@ -37,7 +37,6 @@ static inline String modeToString(enum mode m)
 class settingStore {
   public:
     settingStore();
-    settingStore(mode defaultMode, int max_HES_turns, int lightOn, int lightOff, int timeOn, int timeOff);
     mode _defaultMode = combine;
     int _max_HES_turns = 1;
     int _lightOn = 150;

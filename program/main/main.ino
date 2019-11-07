@@ -334,7 +334,7 @@ void runningSetup(){
 
 
 settingStore::settingStore(){
-  this._eeprom(0x50);
+  //this._eeprom(0x50);
   this->_eeprom.initialize();  
 }
 
