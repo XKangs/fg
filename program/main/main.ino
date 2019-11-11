@@ -21,7 +21,6 @@ LiquidCrystal _lcd(8, 9, 4, 5, 6, 7);
 
 mode _mode = combine;
 settingStore _conf;
-String _lcdText[2];
 tmElements_t tm;
 int _turns = 0;
 
@@ -68,10 +67,22 @@ void loop() {
   }
 }
 /*
+** other functions
+*/
+void setText(String text, int row,int col=0){
+  if (row == 0) {
+    _lcd.clear();
+  }
+  _lcd.setCursor(col, row);
+  _lcd.print(text);
+}
+
+/*
 ** statuses
 */
 void timeOpenFun() {
   setText("waiting timer", 0);
+  setText(("/"+String(_conf._timeOn)), 1, 14);
   while (true) {
     if (RTC.read(tm)) {
       if (tm.Hour > _conf._timeOn) {
@@ -79,35 +90,33 @@ void timeOpenFun() {
       }
     }
     if (_kp.getKey() == AnalogKeypad::up) {
-  	  //return;
+  	  return;
     }  
     setText(String(tm.Hour,DEC),1);
-    //setText("c:"+tm.Hour+" ",1);
-    delay(3000);
+    delay(500);
   }
 }
 
 void lightOpenFun() {
   setText("waiting light", 0);
+  setText("/"+String(_conf._lightOn), 1, 16-4);
   int luxReading;
   while (true) {
     luxReading = analogRead(LDR_PIN);
     if (luxReading > _conf._lightOn){
-      Serial.print("time condition return");
-      Serial.println(luxReading);
-      Serial.println(_conf._lightOn);
       return;
     }
     if (_kp.getKey() == AnalogKeypad::up) {
       return;
     }
     setText(String(luxReading,DEC), 1);
-    //setText("LUX:".String(luxReading,DEC)."  ", 1);
+    delay(500);
   }
 }
 
 void openingFun() {
   setText("opening", 0);
+  setText("/"+String(_conf._max_HES_turns), 1, 16-3);
   _turns = 0;
   _motor.setSpeed(225);
   _motor.forward();
@@ -122,6 +131,7 @@ void openingFun() {
 
 void timeCloseFun() {
   setText("waiting light", 0);
+  setText("/"+String(_conf._lightOff), 1, 16-4);
   int luxReading;
   while (true) {
     luxReading = analogRead(LDR_PIN);
@@ -132,10 +142,12 @@ void timeCloseFun() {
       return;
     }
     setText(String(luxReading,DEC), 1);
+    delay(500);
   }
 }
 void lightCloseFun() {
   setText("waiting light", 0);
+  setText("/"+String(_conf._lightOff), 1, 16-4);
   int luxReading;
   while (true) {
     luxReading = analogRead(LDR_PIN);
@@ -146,10 +158,12 @@ void lightCloseFun() {
       return;
     }
     setText(String(luxReading,DEC), 1);
+    delay(500);
   }
 }
 void closingFun() {
   setText("closing", 0);
+  setText("/"+String(_conf._max_HES_turns), 1, 16-3);
   _turns = 0;
   _motor.setSpeed(225);
   _motor.forward();
@@ -292,21 +306,6 @@ void overHeatAction() {
 void HESAction(){
   Serial.println("!!");
   _turns++;
-}
-
-/*
-** other functions
-*/
-void setText(String text, int row) {
-  if (text.equals(_lcdText[row])) {
-    return;
-  }
-  if (row == 0) {
-    _lcd.clear();
-  } else {
-    _lcd.setCursor(0, row);
-  }
-  _lcd.print(text);
 }
 
 /*
