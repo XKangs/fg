@@ -1,208 +1,24 @@
 Forward Design Changes Report
 -----------------------------
 
-Report Written:     Wednesday, August 21, 2019
+Report Written:     Wednesday, November 13, 2019
 Project Path:       C:\Users\xKang\Desktop\fg\design\atuo-gate.prj
 Design Path:        C:\Users\xKang\Desktop\fg\design\atuo-gate.pcb
 Design Title:       
-Created:            26/07/2019 11:11:12 PM
-Last Saved:         18/08/2019 1:00:30 AM
-Editing Time:       1198 min
+Created:            27/07/2019 12:11:12 AM
+Last Saved:         13/11/2019 12:27:49 AM
+Editing Time:       1308 min
 Units:              thou (precision 0)
 
-Disconnected pin "IC1.26" from net "N0086!MicroController!".
-Disconnected pin "DS1.1" from net "GND".
-Disconnected pin "DS1.4" from net "N0059!LCD!".
-Disconnected pin "DS1.5" from net "N0058!LCD!".
-Disconnected pin "DS1.6" from net "N0057!LCD!".
-Disconnected pin "DS1.11" from net "N0047!LCD!".
-Disconnected pin "DS1.12" from net "N0048!LCD!".
-Disconnected pin "DS1.13" from net "N0050!LCD!".
-Disconnected pin "DS1.14" from net "N0055!LCD!".
-Disconnected pin "DS1.15" from net "N0036!LCD!".
-Disconnected pin "DS1.16" from net "GND".
-Disconnected pin "Q1.1" from net "N0035!LCD!".
-Disconnected pin "Q1.2" from net "N0033!LCD!".
-Disconnected pin "Q1.3" from net "GND".
-Disconnected pin "R8.2" from net "N0033!LCD!".
-Disconnected pin "R9.1" from net "N0035!LCD!".
-Disconnected pin "R9.2" from net "N0036!LCD!".
-Disconnected pin "IC2.4" from net "N0047!LCD!".
-Disconnected pin "IC2.5" from net "N0048!LCD!".
-Disconnected pin "IC2.6" from net "N0050!LCD!".
-Disconnected pin "IC2.7" from net "N0055!LCD!".
-Disconnected pin "IC2.9" from net "N0057!LCD!".
-Disconnected pin "IC2.10" from net "N0058!LCD!".
-Disconnected pin "IC2.11" from net "N0059!LCD!".
-Disconnected pin "SW13.1" from net "N0052!KeyPad!".
-Disconnected pin "SW13.2" from net "N0052!KeyPad!".
-Disconnected pin "SW23.1" from net "N0054!KeyPad!".
-Disconnected pin "SW23.2" from net "N0054!KeyPad!".
-Disconnected pin "SW33.1" from net "N0056!KeyPad!".
-Disconnected pin "SW33.2" from net "N0056!KeyPad!".
-Disconnected pin "SW12.1" from net "N0052!KeyPad!".
-Disconnected pin "SW12.2" from net "N0052!KeyPad!".
-Disconnected pin "SW22.1" from net "N0054!KeyPad!".
-Disconnected pin "SW22.2" from net "N0054!KeyPad!".
-Disconnected pin "SW32.1" from net "N0056!KeyPad!".
-Disconnected pin "SW32.2" from net "N0056!KeyPad!".
-Disconnected pin "SW11.1" from net "N0052!KeyPad!".
-Disconnected pin "SW11.2" from net "N0052!KeyPad!".
-Disconnected pin "R16.1" from net "+5V".
-Disconnected pin "R16.2" from net "N0068!KeyPad!".
-Disconnected pin "IC7.1" from net "N0068!KeyPad!".
-Disconnected pin "IC7.4" from net "N0056!KeyPad!".
-Disconnected pin "IC7.5" from net "N0054!KeyPad!".
-Disconnected pin "IC7.6" from net "N0052!KeyPad!".
-Disconnected pin "IC7.7" from net "N0050!KeyPad!".
-Disconnected pin "IC7.9" from net "N0047!KeyPad!".
-Disconnected pin "IC7.10" from net "N0046!KeyPad!".
-Disconnected pin "SW21.1" from net "N0054!KeyPad!".
-Disconnected pin "SW21.2" from net "N0054!KeyPad!".
-Disconnected pin "SW31.1" from net "N0056!KeyPad!".
-Disconnected pin "SW31.2" from net "N0056!KeyPad!".
-Disconnected pin "R11.1" from net "N0056!KeyPad!".
-Disconnected pin "R12.1" from net "N0054!KeyPad!".
-Disconnected pin "R13.1" from net "N0052!KeyPad!".
+Changed component reference "RTC" from component "RTC shield", package "RTC-shield" to component "RTC", package "RTC-shield".
 
-Deleted component reference "DS1".
-Deleted component reference "R9".
+Added net "N0015!RTC!".
 
-Deleted net "N0033!LCD!".
-Deleted net "N0035!LCD!".
-Deleted net "N0036!LCD!".
-Deleted net "N0047!LCD!".
-Deleted net "N0048!LCD!".
-Deleted net "N0050!LCD!".
-Deleted net "N0055!LCD!".
-Deleted net "N0057!LCD!".
-Deleted net "N0058!LCD!".
-Deleted net "N0059!LCD!".
-Deleted net "N0052!KeyPad!".
-Deleted net "N0054!KeyPad!".
-Deleted net "N0056!KeyPad!".
-Deleted net "N0068!KeyPad!".
-Deleted net "N0086!MicroController!".
+Added component reference "U1" of component "1053", package "1053".
 
-Changed component reference "Q1" from component "BC548BTA", package "BC548BTA" to component "PMOS", package "DSC".
-
-Added net "LCD_buttons".
-Added net "N0064!LCD!".
-Added net "N0065!LCD!".
-Added net "N0067!LCD!".
-Added net "N0068!LCD!".
-Added net "N0069!LCD!".
-Added net "N0071!LCD!".
-Added net "N0075!LCD!".
-Added net "N0078!LCD!".
-Added net "N0080!LCD!".
-Added net "N0080!KeyPad!".
-Added net "N0084!KeyPad!".
-Added net "N0085!KeyPad!".
-Added net "N0086!KeyPad!".
-Added net "N0090!KeyPad!".
-Added net "N0111!KeyPad!".
-
-Added component reference "IC3" of component "lcd keyped shield", package "USER".
-Added component reference "R6" of component "Resistor", package "DSC".
-Added component reference "SW14" of component "Pushbutton", package "DISC".
-Added component reference "SW24" of component "Pushbutton", package "DISC".
-Added component reference "SW34" of component "Pushbutton", package "DISC".
-Added component reference "SW41" of component "Pushbutton", package "DISC".
-Added component reference "SW42" of component "Pushbutton", package "DISC".
-Added component reference "SW43" of component "Pushbutton", package "DISC".
-Added component reference "SW44" of component "Pushbutton", package "DISC".
-Added component reference "R14" of component "Resistor", package "DSC".
-Changed value "Value" on component reference "R14" to "10K".
-
-Connected pin "IC1.26" to net "LCD_buttons".
-Connected pin "IC2.4" to net "N0067!LCD!".
-Connected pin "IC2.5" to net "N0071!LCD!".
-Connected pin "IC2.6" to net "N0069!LCD!".
-Connected pin "IC2.7" to net "N0068!LCD!".
-Connected pin "IC2.11" to net "N0064!LCD!".
-Connected pin "IC2.9" to net "N0065!LCD!".
-Connected pin "IC3.1" to net "+5V".
-Connected pin "IC3.2" to net "RESET".
-Connected pin "IC3.3" to net "LCD_buttons".
-Connected pin "IC3.4" to net "N0075!LCD!".
-Connected pin "IC3.6" to net "N0067!LCD!".
-Connected pin "IC3.7" to net "N0071!LCD!".
-Connected pin "IC3.8" to net "N0069!LCD!".
-Connected pin "IC3.9" to net "N0068!LCD!".
-Connected pin "IC3.10" to net "N0064!LCD!".
-Connected pin "IC3.11" to net "N0065!LCD!".
-Connected pin "IC3.12" to net "GND".
-Connected pin "Q1.1" to net "N0080!LCD!".
-Connected pin "Q1.2" to net "N0078!LCD!".
-Connected pin "Q1.3" to net "N0075!LCD!".
-Connected pin "R6.1" to net "N0078!LCD!".
-Connected pin "R6.2" to net "+5V".
-Connected pin "R8.2" to net "N0080!LCD!".
-Connected pin "IC7.1" to net "N0111!KeyPad!".
-Connected pin "IC7.4" to net "N0080!KeyPad!".
-Connected pin "IC7.5" to net "N0086!KeyPad!".
-Connected pin "IC7.6" to net "N0085!KeyPad!".
-Connected pin "IC7.7" to net "N0084!KeyPad!".
-Connected pin "IC7.12" to net "N0090!KeyPad!".
-Connected pin "IC7.11" to net "N0046!KeyPad!".
-Connected pin "IC7.10" to net "N0047!KeyPad!".
-Connected pin "IC7.9" to net "N0050!KeyPad!".
-Connected pin "SW13.1" to net "N0084!KeyPad!".
-Connected pin "SW13.2" to net "N0084!KeyPad!".
-Connected pin "SW23.1" to net "N0085!KeyPad!".
-Connected pin "SW23.2" to net "N0085!KeyPad!".
-Connected pin "SW33.1" to net "N0086!KeyPad!".
-Connected pin "SW33.2" to net "N0086!KeyPad!".
-Connected pin "SW12.1" to net "N0084!KeyPad!".
-Connected pin "SW12.2" to net "N0084!KeyPad!".
-Connected pin "SW22.1" to net "N0085!KeyPad!".
-Connected pin "SW22.2" to net "N0085!KeyPad!".
-Connected pin "SW32.1" to net "N0086!KeyPad!".
-Connected pin "SW32.2" to net "N0086!KeyPad!".
-Connected pin "SW11.1" to net "N0084!KeyPad!".
-Connected pin "SW11.2" to net "N0084!KeyPad!".
-Connected pin "SW21.1" to net "N0085!KeyPad!".
-Connected pin "SW21.2" to net "N0085!KeyPad!".
-Connected pin "SW31.1" to net "N0086!KeyPad!".
-Connected pin "SW31.2" to net "N0086!KeyPad!".
-Connected pin "R11.1" to net "N0080!KeyPad!".
-Connected pin "R12.1" to net "N0086!KeyPad!".
-Connected pin "R13.1" to net "N0085!KeyPad!".
-Connected pin "SW14.1" to net "N0084!KeyPad!".
-Connected pin "SW14.2" to net "N0084!KeyPad!".
-Connected pin "SW14.3" to net "N0090!KeyPad!".
-Connected pin "SW14.4" to net "N0090!KeyPad!".
-Connected pin "SW24.1" to net "N0085!KeyPad!".
-Connected pin "SW24.2" to net "N0085!KeyPad!".
-Connected pin "SW24.3" to net "N0090!KeyPad!".
-Connected pin "SW24.4" to net "N0090!KeyPad!".
-Connected pin "SW34.1" to net "N0086!KeyPad!".
-Connected pin "SW34.2" to net "N0086!KeyPad!".
-Connected pin "SW34.3" to net "N0090!KeyPad!".
-Connected pin "SW34.4" to net "N0090!KeyPad!".
-Connected pin "SW41.1" to net "N0080!KeyPad!".
-Connected pin "SW41.2" to net "N0080!KeyPad!".
-Connected pin "SW41.3" to net "N0050!KeyPad!".
-Connected pin "SW41.4" to net "N0050!KeyPad!".
-Connected pin "SW42.1" to net "N0080!KeyPad!".
-Connected pin "SW42.2" to net "N0080!KeyPad!".
-Connected pin "SW42.3" to net "N0047!KeyPad!".
-Connected pin "SW42.4" to net "N0047!KeyPad!".
-Connected pin "SW43.1" to net "N0080!KeyPad!".
-Connected pin "SW43.2" to net "N0080!KeyPad!".
-Connected pin "SW43.3" to net "N0046!KeyPad!".
-Connected pin "SW43.4" to net "N0046!KeyPad!".
-Connected pin "SW44.1" to net "N0080!KeyPad!".
-Connected pin "SW44.2" to net "N0080!KeyPad!".
-Connected pin "SW44.3" to net "N0090!KeyPad!".
-Connected pin "SW44.4" to net "N0090!KeyPad!".
-Connected pin "R14.1" to net "N0084!KeyPad!".
-Connected pin "R14.2" to net "+5V".
-Connected pin "R16.1" to net "N0111!KeyPad!".
-Connected pin "R16.2" to net "+5V".
-
-Net N0056!LCD! renamed to N0079!LCD!
+Connected pin "RTC.1" to net "N0015!RTC!".
+Connected pin "U1.1" to net "GND".
+Connected pin "U1.2" to net "N0015!RTC!".
 
 
 End Of Report.
