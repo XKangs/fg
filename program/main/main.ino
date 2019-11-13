@@ -166,7 +166,7 @@ void closingFun() {
   setText("/"+String(_conf._max_HES_turns), 1, 16-3);
   _turns = 0;
   _motor.setSpeed(225);
-  _motor.forward();
+  _motor.backward();
   while (digitalRead(REED_BOTTOM_PIN) == HIGH && _turns < _conf._max_HES_turns) {
     setText(String(_turns,DEC), 1);
     delay(500);
