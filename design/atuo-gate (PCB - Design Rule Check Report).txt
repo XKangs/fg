@@ -1,13 +1,13 @@
 Design Rule Check Report
 ------------------------
 
-Report Written:     Tuesday, November 12, 2019
+Report Written:     Thursday, November 14, 2019
 Project Path:       C:\Users\xKang\Desktop\fg\design\atuo-gate.prj
 Design Path:        C:\Users\xKang\Desktop\fg\design\atuo-gate.pcb
 Design Title:       
 Created:            27/07/2019 12:11:12 AM
-Last Saved:         12/11/2019 11:18:09 PM
-Editing Time:       1237 min
+Last Saved:         14/11/2019 12:25:51 AM
+Editing Time:       1629 min
 Units:              thou (precision 0)
 
 
@@ -26,13 +26,13 @@ Spacings
 
 =========
 
-Tracks        No
-Pads and Vias No
-Shapes        No
-Text          No
-Board         No
+Tracks        Yes
+Pads and Vias Yes
+Shapes        Yes
+Text          Yes
+Board         Yes
 Drills        No
-Components    No
+Components    Yes
 
 
 Manufacturing
@@ -41,22 +41,22 @@ Manufacturing
 
 Drill Breakout                  No
 Drill Backoff                   No
-Silkscreen Overlap              No
-Copper Text In Board            No
-Min Track Width                 No
-Min Annular Ring                No
-Min Paste Size                  No
-Vias In Pads                    No
-Unplated Vias                   No
-Unplated Pads With Inner Tracks No
+Silkscreen Overlap              Yes
+Copper Text In Board            Yes
+Min Track Width                 Yes
+Min Annular Ring                Yes
+Min Paste Size                  Yes
+Vias In Pads                    Yes
+Unplated Vias                   Yes
+Unplated Pads With Inner Tracks Yes
 
 
 Nets
 
 =====
 
-Net Completion               No
-Dangling Tracks              No
+Net Completion               Yes
+Dangling Tracks              Yes
 Net Track Length Differences No
 
 
