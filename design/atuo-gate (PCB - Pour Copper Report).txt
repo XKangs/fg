@@ -1,13 +1,13 @@
 Pour Copper Report
 ------------------
 
-Report Written:     Thursday, November 14, 2019
+Report Written:     Saturday, November 16, 2019
 Project Path:       C:\Users\xKang\Desktop\fg\design\atuo-gate.prj
 Design Path:        C:\Users\xKang\Desktop\fg\design\atuo-gate.pcb
 Design Title:       
 Created:            27/07/2019 12:11:12 AM
-Last Saved:         14/11/2019 12:25:06 AM
-Editing Time:       1629 min
+Last Saved:         16/11/2019 4:32:07 PM
+Editing Time:       1678 min
 Units:              thou (precision 0)
 
 

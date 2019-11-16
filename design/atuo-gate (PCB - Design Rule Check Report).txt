@@ -1,31 +1,21 @@
 Design Rule Check Report
 ------------------------
 
-Report Written:     Thursday, November 14, 2019
+Report Written:     Saturday, November 16, 2019
 Project Path:       C:\Users\xKang\Desktop\fg\design\atuo-gate.prj
 Design Path:        C:\Users\xKang\Desktop\fg\design\atuo-gate.pcb
 Design Title:       
 Created:            27/07/2019 12:11:12 AM
-Last Saved:         14/11/2019 2:03:32 PM
-Editing Time:       1641 min
+Last Saved:         16/11/2019 4:32:07 PM
+Editing Time:       1675 min
 Units:              thou (precision 0)
 
 
 Results
 =======
 
-Track to Drill Hole error (T-D) at (9270 13890) on layer "Bottom Copper".
-    Track too wide to backoff from drill.
-Track to Drill Hole error (T-D) at (9070 13840) on layer "Top Copper".
-    Track too wide to backoff from drill.
-Track to Drill Hole error (T-D) at (9270 13790) on layer "Bottom Copper".
-    Track too wide to backoff from drill.
-Track to Drill Hole error (T-D) at (9070 13340) on layer "Bottom Copper".
-    Track too wide to backoff from drill.
-Track to Drill Hole error (T-D) at (9270 13290) on layer "Top Copper".
-    Track too wide to backoff from drill.
 
-Number of errors found : 5
+No errors found
 
 
 Settings
@@ -65,7 +55,7 @@ Nets
 
 =====
 
-Net Completion               No
+Net Completion               Yes
 Dangling Tracks              Yes
 Net Track Length Differences No
 

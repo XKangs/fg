@@ -1,18 +1,76 @@
 Forward Design Changes Report
 -----------------------------
 
-Report Written:     Thursday, November 14, 2019
+Report Written:     Saturday, November 16, 2019
 Project Path:       C:\Users\xKang\Desktop\fg\design\atuo-gate.prj
 Design Path:        C:\Users\xKang\Desktop\fg\design\atuo-gate.pcb
 Design Title:       
 Created:            27/07/2019 12:11:12 AM
-Last Saved:         14/11/2019 12:07:26 AM
-Editing Time:       1615 min
+Last Saved:         14/11/2019 2:04:38 PM
+Editing Time:       1642 min
 Units:              thou (precision 0)
 
-Disconnected pin "IC1.21" from net "GND".
+Disconnected pin "IC5.15" from net "GND".
 
-Connected pin "IC1.21" to net "+5V".
+Changed value "Value" on component reference "R7" to "470".
+
+Added net "N0099!MicroController!".
+Added net "N0100!MicroController!".
+Added net "MD_interrupt".
+Added net "N0098!motor driver!".
+Added net "N0103!motor driver!".
+Added net "N0105!motor driver!".
+Added net "N0112!motor driver!".
+Added net "N0119!motor driver!".
+
+Added component reference "R19" of component "Resistor", package "DSC".
+Added component reference "CLOSED" of component "LED", package "DSC".
+Changed value "Value" on component reference "CLOSED" to "LED 5MM GREEN".
+Added component reference "Rshunt" of component "Resistor", package "DSC".
+Changed value "Value" on component reference "Rshunt" to "0.2".
+Added component reference "R2" of component "Resistor", package "DSC".
+Changed value "Value" on component reference "R2" to "12K".
+Added component reference "R15" of component "Resistor", package "DSC".
+Changed value "Value" on component reference "R15" to "12K".
+Added component reference "R17" of component "Resistor", package "DSC".
+Changed value "Value" on component reference "R17" to "220K".
+Added component reference "R18" of component "Resistor", package "DSC".
+Changed value "Value" on component reference "R18" to "220K".
+Added component reference "IC2" of component "LM358N_NOPB", package "DIP794W53P254L959H508Q8N".
+Added component reference "R20" of component "Resistor", package "DSC".
+Changed value "Value" on component reference "R20" to "2K".
+Added component reference "R21" of component "Resistor", package "DSC".
+Changed value "Value" on component reference "R21" to "3K".
+
+Connected pin "IC1.5" to net "MD_interrupt".
+Connected pin "IC1.11" to net "N0099!MicroController!".
+Connected pin "R19.1" to net "GND".
+Connected pin "R19.2" to net "N0100!MicroController!".
+Connected pin "CLOSED.2" to net "N0099!MicroController!".
+Connected pin "CLOSED.1" to net "N0100!MicroController!".
+Connected pin "IC5.15" to net "N0098!motor driver!".
+Connected pin "Rshunt.1" to net "GND".
+Connected pin "Rshunt.2" to net "N0098!motor driver!".
+Connected pin "R2.1" to net "N0098!motor driver!".
+Connected pin "R2.2" to net "N0119!motor driver!".
+Connected pin "R15.1" to net "GND".
+Connected pin "R15.2" to net "N0103!motor driver!".
+Connected pin "R17.1" to net "GND".
+Connected pin "R17.2" to net "N0119!motor driver!".
+Connected pin "R18.1" to net "N0105!motor driver!".
+Connected pin "R18.2" to net "N0103!motor driver!".
+Connected pin "IC2.1" to net "N0105!motor driver!".
+Connected pin "IC2.2" to net "N0103!motor driver!".
+Connected pin "IC2.3" to net "N0119!motor driver!".
+Connected pin "IC2.4" to net "GND".
+Connected pin "IC2.8" to net "+5V".
+Connected pin "IC2.7" to net "MD_interrupt".
+Connected pin "IC2.5" to net "N0112!motor driver!".
+Connected pin "IC2.6" to net "N0105!motor driver!".
+Connected pin "R20.1" to net "N0112!motor driver!".
+Connected pin "R20.2" to net "+5V".
+Connected pin "R21.1" to net "GND".
+Connected pin "R21.2" to net "N0112!motor driver!".
 
 
 End Of Report.
