@@ -1,42 +1,42 @@
 Component,Value,Package,Suppiler,Part Number,Qty, unit Price , total price  ,Ref Name,Description
-ATMEGA328P-PU,,DIP28,RS,131-0275,1, $5.06 , $5.06 ,IC1,"MICROCHIP - ATMEGA328P-PU. - MICROCONTROLLER MCU, 8 BIT, ATMEGA, 20MHZ, DIP-28"
-battery cell,,1053,RS,175-6055,1, $3.45 , $3.45 ,U1,Coin Cell Battery Holders BATTERY HOLDER FOR CR2450
-Capacitor,100nF,DSC,jaycar,RG-5125,3, $0.04 , $0.11 ,"C2, C8-9",Capacitor
-Capacitor,22pf,DSC,element 14,169-4226,2, $0.00 , $0.01 ,"C1, C6",Capacitor
-Capacritor_Pol,0.1uF,DSCV,jaycar,RG-5125,1, $0.38 , $0.38 ,C4,Capacitor
-Capacritor_Pol,0.33uF,DSCV,rs,707-5650,1, $0.04 , $0.04 ,C3,"dc Aluminium Electrolytic Capacitor, Through Hole 5 (Dia.)"
-Capacritor_Pol,100nF,DSCV,rs,711-1396 ,2, $0.04 , $0.09 ,"C5, C7","dc Aluminium Electrolytic Capacitor, Through Hole 5 (Dia.)"
-Diode,1N4001,DSC,rs,628-8931,9, $0.31 , $2.77 ,D1-9,Diode
-DS1307,,DIP8,rs,540-2726,1, $6.29 , $6.29 ,RTC,"Trickle charge timekeeping chip,DS1302 Maxim DS1302+ Real Time Clock, Alarm, Calendar, Clock, 31B RAM, Serial, 5.5 V, 8-Pin PDIP"
-hall effect sensor,,,jaycar,XC4434,1, $6.20 , $6.20 ,,
-HC49US-16.000MABJ-UB,,HC49,digi key,631-1108-ND,1, $0.35 , $0.35 ,Y1,Crystals 16MHz 18pF HC49S THROUGH HOLE
-headers,,DSC,rs,701-9953,3, $1.29 , $3.86 ,"EN_KP, EN_LCD, EN_RTC,EN_CH2, reed_sw1-2,I2C, Programming,HES,ISP","2 way male header, 2.54mm "
-IC,,TO3,rs,398-697,1, $0.43 , $0.43 ,IC4,"3-Term Fixed 5V Volt Reg 4% TS7805CZ C0 TS7805CZ C0, Voltage Regulator, 2.2A 5 V, +/-4%, 3-Pin TO-220"
-IC,24LC256-I_P,DIP8,RS,454-179,1, $3.48 , $3.48 ,EEPROM,"Microchip 24LC256-I/P Serial EEPROM Memory, 256kbit, 900ns, 2.5  5.5 V 8-Pin PDIP"
-L298N,,MULTIWATT15V,rs,636-384?,1, $10.43 , $10.43 ,IC5,"L298N, Stepper Motor Controller, Dual Full Bridge Motor Driver, 4.8  46 V, 15-Pin MULTIWATT V"
-lcd keyped shield,,,jaycar,XC4454,1, $22.40 , $22.40 ,LCD,
-LED,LED 5MM GREEN,DSC,rs,228-6004,1, $0.04 , $0.04 ,CLOSED,Light Em Di Green
-LED,LED 5MM RED,DSC,rs,228-5988,1, $0.34 , $0.34 ,POWER,Light Em Di RED
-LM358N_NOPB,,DIP794W53P254L959H508Q8N,rs,761-5860,1, $1.38 , $1.38 ,IC2,"Texas Instruments LM358N/NOPB, Dual Op Amp, 1MHz, 3  32 V, 8-Pin MDIP"
-motor,,,rs,420-671,1, $42.20 , $42.20 ,,
-PCF8574N,,DIP254P762X508-16,RS,920-3393,2, $2.02 , $4.04 ,"IC7, LCD_IO",REMOTE 8-BIT I/O EXPANDER FOR I2C BUS
-Photoresistor,,DSC,rs,466-1974,1, $2.08 , $2.08 ,Rp1,
-PMOS,,DSC,RS,803-1093,1, $0.13 , $0.13 ,Q1,MOSFET
-Pushbutton,,DISC,rs,119-1955,17, $0.31 , $5.27 ,"RESET, SW11-14, SW21-24, SW31-34, SW41-44",6mm tactile buttons
-read switch,,,rs,361-4983,2, $2.66 , $5.32 ,,
-Resistor,1K,DSC,element 14,1127904,6, $0.03 , $0.18 ,"R3, R6, R8-10, R19",Resistor
-Resistor,5K,DSC,element 14,1602150,1, $0.39 , $0.39 ,R1,Resistor
-Resistor,0.2,DSC,element 14,1684968,1, $1.63 , $1.63 ,Rshunt,shunt resistor
-Resistor,470,DSC,rs,707-7647,1, $0.33 , $0.33 ,R7,Resistor
-Resistor,1.6K,DSC,rs,739-7231,2, $0.07 , $0.14 ,R4-5,Resistor
-Resistor,10K,DSC,rs,707-7745,5, $0.04 , $0.19 ,"R11-14, R16",Resistor
-Resistor,12K,DSC,rs,707-7757,2, $0.04 , $0.07 ,"R2, R15",Resistor
-Resistor,220K,DSC,rs,707-8965,2, $0.22 , $0.45 ,R17-18,Resistor
-socket,,16DIP,element 14,1103846,2, $0.69 , $1.38 ,,
-socket,,28DIP,element 14,1103850,1, $1.21 , $1.21 ,,
+ATMEGA328P-PU,,DIP28,RS,131-0275,1,$5.06,$5.06,IC1,"MICROCHIP - ATMEGA328P-PU. - MICROCONTROLLER MCU, 8 BIT, ATMEGA, 20MHZ, DIP-28"
+battery cell,,1053,RS,175-6055,1,$3.45,$3.45,U1,Coin Cell Battery Holders BATTERY HOLDER FOR CR2450
+Capacitor,100nF,DSC,jaycar,RG-5125,3,$0.04,$0.11,"C2, C8-9",Capacitor
+Capacitor,22pf,DSC,element 14,169-4226,2,$0.00,$0.01,"C1, C6",Capacitor
+Capacritor_Pol,0.1uF,DSCV,jaycar,RG-5125,1,$0.38,$0.38,C4,Capacitor
+Capacritor_Pol,0.33uF,DSCV,rs,707-5650,1,$0.04,$0.04,C3,"dc Aluminium Electrolytic Capacitor, Through Hole 5 (Dia.)"
+Capacritor_Pol,100nF,DSCV,rs,711-1396 ,2,$0.04,$0.09,"C5, C7","dc Aluminium Electrolytic Capacitor, Through Hole 5 (Dia.)"
+Diode,1N4001,DSC,rs,628-8931,9,$0.31,$2.77,D1-9,Diode
+DS1307,,DIP8,rs,540-2726,1,$6.29,$6.29,RTC,"Trickle charge timekeeping chip,DS1302 Maxim DS1302+ Real Time Clock, Alarm, Calendar, Clock, 31B RAM, Serial, 5.5 V, 8-Pin PDIP"
+hall effect sensor,,,jaycar,XC4434,1,$6.20,$6.20,,
+HC49US-16.000MABJ-UB,,HC49,digi key,631-1108-ND,1,$0.35,$0.35,Y1,Crystals 16MHz 18pF HC49S THROUGH HOLE
+headers,,DSC,rs,701-9953,3,$1.29,$3.86,"EN_KP, EN_LCD, EN_RTC,EN_CH2, reed_sw1-2,I2C, Programming,HES,ISP","2 way male header, 2.54mm "
+IC,,TO3,rs,398-697,1,$0.43,$0.43,IC4,"3-Term Fixed 5V Volt Reg 4% TS7805CZ C0 TS7805CZ C0, Voltage Regulator, 2.2A 5 V, +/-4%, 3-Pin TO-220"
+IC,24LC256-I_P,DIP8,RS,454-179,1,$3.48,$3.48,EEPROM,"Microchip 24LC256-I/P Serial EEPROM Memory, 256kbit, 900ns, 2.5  5.5 V 8-Pin PDIP"
+L298N,,MULTIWATT15V,rs,636-384?,1,$10.43,$10.43,IC5,"L298N, Stepper Motor Controller, Dual Full Bridge Motor Driver, 4.8  46 V, 15-Pin MULTIWATT V"
+lcd keyped shield,,,jaycar,XC4454,1,$22.40,$22.40,LCD,
+LED,LED 5MM GREEN,DSC,rs,228-6004,1,$0.04,$0.04,CLOSED,Light Em Di Green
+LED,LED 5MM RED,DSC,rs,228-5988,1,$0.34,$0.34,POWER,Light Em Di RED
+LM358N_NOPB,,DIP794W53P254L959H508Q8N,rs,761-5860,1,$1.38,$1.38,IC2,"Texas Instruments LM358N/NOPB, Dual Op Amp, 1MHz, 3  32 V, 8-Pin MDIP"
+motor,,,rs,420-671,1,$42.20,$42.20,,
+PCF8574N,,DIP254P762X508-16,RS,920-3393,2,$2.02,$4.04,"IC7, LCD_IO",REMOTE 8-BIT I/O EXPANDER FOR I2C BUS
+Photoresistor,,DSC,rs,466-1974,1,$2.08,$2.08,Rp1,
+PMOS,,DSC,RS,803-1093,1,$0.13,$0.13,Q1,MOSFET
+Pushbutton,,DISC,rs,119-1955,17,$0.31,$5.27,"RESET, SW11-14, SW21-24, SW31-34, SW41-44",6mm tactile buttons
+read switch,,,rs,361-4983,2,$2.66,$5.32,,
+Resistor,1K,DSC,element 14,1127904,6,$0.03,$0.18,"R3, R6, R8-10, R19",Resistor
+Resistor,5K,DSC,element 14,1602150,1,$0.39,$0.39,R1,Resistor
+Resistor,0.2,DSC,element 14,1684968,1,$1.63,$1.63,Rshunt,shunt resistor
+Resistor,470,DSC,rs,707-7647,1,$0.33,$0.33,R7,Resistor
+Resistor,1.6K,DSC,rs,739-7231,2,$0.07,$0.14,R4-5,Resistor
+Resistor,10K,DSC,rs,707-7745,5,$0.04,$0.19,"R11-14, R16",Resistor
+Resistor,12K,DSC,rs,707-7757,2,$0.04,$0.07,"R2, R15",Resistor
+Resistor,220K,DSC,rs,707-8965,2,$0.22,$0.45,R17-18,Resistor
+socket,,16DIP,element 14,1103846,2,$0.69,$1.38,,
+socket,,28DIP,element 14,1103850,1,$1.21,$1.21,,
 Resistor,2K,DSC,,,1, $-   , $-   ,R20,Resistor
 Resistor,3K,DSC,,,1, $-   , $-   ,R21,Resistor
-socket,,8DIP,element 14,110-3844,2, $0.34 , $0.67 ,,
-Terminal blocks ,,20020316G021B01LF,element 14,171-1026,3, $1.54 , $4.62 ,"12Vin, M1-2",Fixed Terminal Blocks 2P 5.00MM TERM BLK FIXED HORIZONTAL
+socket,,8DIP,element 14,110-3844,2,$0.34,$0.67,,
+Terminal blocks ,,20020316G021B01LF,element 14,171-1026,3,$1.54,$4.62,"12Vin, M1-2",Fixed Terminal Blocks 2P 5.00MM TERM BLK FIXED HORIZONTAL
 ,,,,,,,,,
-total,,,,,,, $137.41 ,,
+total,,,,,,,$137.41,,
