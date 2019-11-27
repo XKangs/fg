@@ -1,3 +1,10 @@
-the best readme is no read me,so that nobody can understand what I am doing~
+final edition for this semester(probably forever)
 
-![block diagram](https://raw.githubusercontent.com/XKangs/fg/master/block%20diagram.png)
+know issue:
+
+can not go into other mode except light sensor mode. pretty sure the program can read setting from EEPROM, but don't know why it doesn't work...
+
+---
+4：30 pm, 27 November 2019
+
+xKang 
